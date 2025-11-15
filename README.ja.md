@@ -538,8 +538,11 @@ create memory structure
 **プロンプト例**:
 ```
 What patterns did we establish for error handling in this project?
+このプロジェクトでエラーハンドリングにどのようなパターンを確立しましたか？
 Check memory for previous solutions to similar issues.
+似たような問題に対する以前の解決策をメモリから確認してください。
 What architectural decisions were made about the API design?
+API設計についてどのようなアーキテクチャの決定がなされましたか？
 ```
 
 エージェントは自動的に：
@@ -555,45 +558,65 @@ What architectural decisions were made about the API design?
 #### トピックとパターンの取得
 ```
 What topics are documented in memory for this project?
+このプロジェクトのメモリにどのようなトピックがドキュメント化されていますか？
 Show me all the patterns we've established for this project.
+このプロジェクトで確立したすべてのパターンを表示してください。
 What are the documented topics in the knowledge/ directory?
+knowledge/ ディレクトリにドキュメント化されているトピックは何ですか？
 List all architectural patterns we've documented.
+ドキュメント化されているすべてのアーキテクチャパターンをリストしてください。
 ```
 
 #### 特定の情報の検索
 ```
 What did we decide about error handling in this project?
+このプロジェクトでエラーハンドリングについてどのように決定しましたか？
 Check memory for how we handle authentication.
+認証の処理方法をメモリから確認してください。
 What patterns exist for API integration?
+API統合にどのようなパターンが存在しますか？
 Find previous solutions to similar problems.
+似たような問題に対する以前の解決策を見つけてください。
 ```
 
 #### ユーザー設定の確認
 ```
 What are my preferences for this project?
+このプロジェクトに対する私の設定は何ですか？
 Check common preferences that apply to all projects.
+すべてのプロジェクトに適用される共通の設定を確認してください。
 What project-specific preferences are set?
+プロジェクト固有の設定は何が設定されていますか？
 ```
 
 #### アーキテクチャ決定のレビュー
 ```
 What architectural decisions were made for this project?
+このプロジェクトでどのようなアーキテクチャの決定がなされましたか？
 Show me the architecture documentation from memory.
+メモリからアーキテクチャのドキュメントを表示してください。
 What design patterns are we using?
+どのようなデザインパターンを利用していますか？
 ```
 
 #### セッションサマリーの検索
 ```
 What work was done in recent sessions?
+最近のセッションでどのような作業が行われましたか？
 Show me the last few session summaries.
+最新のセッションサマリーをいくつか表示してください。
 What was completed in the last week?
+先週に何が完了しましたか？
 ```
 
 #### プロジェクトステータスの確認
 ```
 What's the current status of this project?
+このプロジェクトの現在のステータスはどうですか？
 Show me recent fixes and updates.
+最近の修正と更新を表示してください。
 What are the known issues and their solutions?
+既知の問題とその解決策は何ですか？
 ```
 
 これらのプロンプトはすべて、エージェントがRAG技術を使用してメモリファイルをインテリジェントに検索し、トークン使用量を最小化しながら正確なコンテキストを提供するようにトリガーします。
@@ -623,6 +646,7 @@ What are the known issues and their solutions?
 
 ```
 Initialize memory for this project. Create the memory structure in the configured memory directory, including index files and initial knowledge files documenting the project architecture and patterns.
+このプロジェクトのメモリを初期化します。設定されたメモリディレクトリにメモリ構造を作成し、プロジェクトのアーキテクチャとパターンをドキュメント化する初期知識ファイルとインデックスファイルを含めます。
 ```
 
 ### 手動メモリ同期プロンプト
@@ -631,6 +655,7 @@ Initialize memory for this project. Create the memory structure in the configure
 
 ```
 Sync memory for this project. Update index files, consolidate recent sessions if needed, and ensure index.json is synchronized with actual files in knowledge/ and sessions/ directories.
+このプロジェクトのメモリを同期します。必要に応じてインデックスファイルを更新し、最近のセッションを統合し、index.jsonがknowledge/およびsessions/ディレクトリの実際のファイルと同期されていることを確認します。
 ```
 
 ### メモリ更新プロンプト
@@ -639,6 +664,7 @@ Sync memory for this project. Update index files, consolidate recent sessions if
 
 ```
 Update project memory with current status. Document recent changes, update index files, and sync any new patterns or architectural decisions.
+現在のステータスでプロジェクトメモリを更新します。最近の変更をドキュメント化し、インデックスファイルを更新し、新しいパターンやアーキテクチャの決定を同期します。
 ```
 
 ## メモリシステムプラットフォームサポート
