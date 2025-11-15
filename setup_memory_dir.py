@@ -90,7 +90,9 @@ def get_memory_path():
             continue
 
         # Decode shell-style escaped characters (like \ for spaces)
+        print(f"DEBUG: Before decode: {memory_path!r}")
         memory_path = decode_shell_escaped_string(memory_path)
+        print(f"DEBUG: After decode: {memory_path!r}")
 
         # Expand user home directory and environment variables
         memory_path = os.path.expanduser(memory_path)
