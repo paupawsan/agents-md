@@ -37,3 +37,5 @@ Platform-specific paths and tools.
 
 **Always use forward slashes** in paths (tools handle conversion).
 
+<!-- #platform-support #cross-platform #macos #linux #windows #path-handling #command-tools -->
+

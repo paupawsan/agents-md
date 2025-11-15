@@ -14,6 +14,30 @@ A collection of systems and tools for AI coding agents, built from real-world wo
 
 **Current Status**: The Memory System is the first system available. Additional systems will be added over time as they are developed and refined through practical application.
 
+## 🚀 Quick Start
+
+**New to this? Not a programmer?** → Start with **[SIMPLE_SETUP.md](SIMPLE_SETUP.md)** - A step-by-step guide written in plain language, perfect for non-technical users.
+
+**Experienced developer?** → Jump to [Memory System Setup](#memory-system-setup) section below.
+
+### What You'll Do (Simple Version)
+
+1. **Get the files** - Download as ZIP from GitHub (no Git needed!) or clone this repository
+2. **Choose a name** - Pick a simple name for your memory folder (e.g., `my-memory`)
+3. **Set up AGENTS.md** - Copy template and replace one placeholder word
+4. **Set up in your project** - Either:
+   - **Option A (Easier)**: Add `agents-md` folder to your workspace - Cursor/VS Code will automatically detect `AGENTS.md`
+   - **Option B**: Copy files to your project folder
+5. **Choose memory location** - Decide where to store memories (usually Documents folder)
+6. **Add to workspace** - Add memory folder to Cursor/VS Code workspace
+7. **Test it** - Ask AI to initialize memory
+
+**That's it!** The detailed guide in [SIMPLE_SETUP.md](SIMPLE_SETUP.md) walks you through each step with screenshots descriptions and troubleshooting tips.
+
+**💡 Tips**: 
+- **No Git? No problem!** You can download the repository as a ZIP file from GitHub - just click "Code" → "Download ZIP"
+- If you're using Cursor or VS Code, the workspace-based setup (Option A) is much easier - no need to copy `AGENTS.md` to each project!
+
 ### Available Systems
 
 #### 🧠 Memory System (Current)
@@ -171,16 +195,31 @@ The goal is to provide a **simple, transparent, and powerful** foundation that w
 
 ## Memory System Setup
 
-### 1. Clone or Initialize the Memory Repository
+> **💡 For Non-Technical Users**: If you're not comfortable with command-line tools or technical jargon, please use the **[SIMPLE_SETUP.md](SIMPLE_SETUP.md)** guide instead. It provides step-by-step instructions with plain language explanations.
 
-First, clone this repository or set up the memory storage location:
+This section provides technical setup instructions for developers. The setup process involves configuring file paths, copying files, and setting up workspace access.
+
+### 1. Get the Repository Files
+
+You have several options to get the repository files:
+
+#### Option A: Download as ZIP (Easiest for Non-Technical Users)
+
+1. On GitHub, click the green **"Code"** button
+2. Click **"Download ZIP"**
+3. Extract the ZIP file to a location on your computer
+4. Navigate to the extracted `agents-md` folder
+
+**No Git required!** This is the simplest method if you're not familiar with command-line tools.
+
+#### Option B: Clone with Git (For Developers)
 
 ```bash
 git clone <repository-url>
 cd agents-md
 ```
 
-Or if you're setting up a new instance:
+#### Option C: Initialize New Instance
 
 ```bash
 mkdir -p ~/Documents/agents-md
@@ -192,6 +231,8 @@ cd ~/Documents/agents-md
 ### 2. Configure Memory Directory Name
 
 **CRITICAL**: You must replace `{MEMORY_DIR}` placeholder in `AGENTS.md` with your chosen directory name.
+
+> **💡 Tip**: If you're not comfortable with find-and-replace, see [SIMPLE_SETUP.md](SIMPLE_SETUP.md) for detailed visual instructions.
 
 #### Option A: Manual Replacement (Recommended for Non-Engineers)
 
@@ -222,22 +263,117 @@ The script will:
 
 **Note**: The script requires Python 3.6+. If you're not comfortable with Python or command-line tools, use Option A (manual replacement) instead - it's just as effective and easier.
 
-### 3. Copy Files to Your Project
+### 3. Set Up Files in Your Project
+
+You have two options for setting up the memory system in your project:
+
+#### Option A: Workspace-Based Setup (Recommended for Cursor/VS Code)
+
+**If your editor supports workspaces** (like Cursor and VS Code), you can add the cloned `agents-md` repository directly to your workspace instead of copying files:
+
+1. **Add agents-md to your workspace**:
+   - Open Command Palette (`Cmd+Shift+P` / `Ctrl+Shift+P`)
+   - Select "Add Folder to Workspace"
+   - Navigate to and select your cloned `agents-md` folder
+   - The `agents-md` folder will appear in your workspace sidebar
+
+2. **AGENTS.md is automatically detected**:
+   - Recent versions of Cursor automatically detect `AGENTS.md` files in the workspace
+   - The `AGENTS.md` file in the `agents-md` folder will be used as active rules
+   - No need to copy `AGENTS.md` to your project root
+
+3. **Copy `_agents-md` folder** (still needed):
+   - You still need to copy the `_agents-md` folder to your project root, OR
+   - Add it to your workspace as well (it will be accessible from the `agents-md` folder)
+
+**Benefits of this approach**:
+- ✅ No need to copy `AGENTS.md` to each project
+- ✅ Easy to update - changes in `agents-md` repository apply automatically
+- ✅ Cleaner project structure - no duplicate files
+- ✅ Works great with multiple projects sharing the same setup
+
+#### Option B: Copy Files to Project (Traditional Method)
 
 **Copy the following to your project root:**
 
 1. **Copy `_agents-md` folder** - Contains memory system prompts and guidelines
 2. **Copy `AGENTS.md`** - Contains agent rules and memory configuration (already configured with your chosen directory name)
 
+**Using Command Line**:
 ```bash
 # From your project root
 cp -r /path/to/agents-md/_agents-md .
 cp /path/to/agents-md/AGENTS.md ./AGENTS.md
 ```
 
+**Using File Manager** (Easier for non-technical users):
+- Navigate to the `agents-md` folder
+- Copy the `_agents-md` folder and `AGENTS.md` file
+- Navigate to your project folder
+- Paste both items
+
+> **💡 For detailed file copying instructions**, see [SIMPLE_SETUP.md](SIMPLE_SETUP.md) Step 4.
+
 **Important**: If your project already has an `AGENTS.md` file, **append** the content from agents-md's `AGENTS.md` to your existing file to avoid conflicts.
 
 **✅ Compatibility Note**: agents-md is fully compatible with existing Cursor rules and user rules. The memory system rules will work alongside your existing `AGENTS.md` content.
+
+### 3.5. Language Selection (Optional)
+
+**AGENTS.md** supports both English and Japanese. You can choose your preferred language using either the automated script or manual setup.
+
+#### Option A: Automated Script (Recommended)
+
+Use the provided Python script to switch between languages:
+
+```bash
+# Switch to Japanese
+python3 switch_agents_lang.py ja
+
+# Switch to English  
+python3 switch_agents_lang.py en
+
+# Check current language
+python3 switch_agents_lang.py
+```
+
+The script maintains separate source files (`AGENTS.md.en` and `AGENTS.md.ja`) and copies the appropriate one to `AGENTS.md` based on your selection.
+
+**⚠️ Important**: After switching languages, the script will attempt to preserve your configured `{MEMORY_PATH}` automatically. However, if the script cannot detect your configured path, you'll need to run `setup_memory_dir.py` again to configure the memory path in the new language template:
+
+```bash
+# After switching language, if MEMORY_PATH needs configuration:
+python3 setup_memory_dir.py
+```
+
+The script will warn you if `{MEMORY_PATH}` still needs to be configured.
+
+#### Option B: Manual Setup (Simple Alternative)
+
+If you prefer manual setup or don't want to use the script, you can manually clone and rename the template files:
+
+**For English**:
+```bash
+# Copy the English template to AGENTS.md
+cp AGENTS.md.en AGENTS.md
+```
+
+**For Japanese**:
+```bash
+# Copy the Japanese template to AGENTS.md
+cp AGENTS.md.ja AGENTS.md
+```
+
+**Note**: The idea is to keep a single `AGENTS.md` file in your project root. The `AGENTS.md.en` and `AGENTS.md.ja` files serve as templates that you clone and rename to `AGENTS.md` based on your language preference.
+
+**⚠️ Important**: After manually copying, you **must** configure the memory path:
+1. Run `setup_memory_dir.py` to configure `{MEMORY_PATH}`:
+   ```bash
+   python3 setup_memory_dir.py
+   ```
+   OR manually replace `{MEMORY_PATH}` placeholder in the copied `AGENTS.md` with your full memory root path (see step 4)
+
+**Note**: Language switching only affects `AGENTS.md`. Documentation files (like `README.md`) have separate Japanese versions (e.g., `README.ja.md`) that don't affect agent functionality.
 
 ### 4. Configure Memory Path in AGENTS.md
 
@@ -256,14 +392,64 @@ cp /path/to/agents-md/AGENTS.md ./AGENTS.md
 
 ### 5. Add Memory Directory to Workspace (Cursor/VS Code)
 
-**IMPORTANT**: For Cursor (or VS Code-based editors) to access external memory files, you need to add your memory directory to your project workspace.
+**CRITICAL**: Cursor and VS Code cannot access files outside the workspace by default. To enable file access permissions for the memory system, you **must** add your memory directory to your project workspace.
+
+> **💡 Need help with this step?** See [SIMPLE_SETUP.md](SIMPLE_SETUP.md) Step 6 for detailed instructions with troubleshooting tips.
+
+#### Why This Is Required
+
+- **File Access Limitation**: Cursor/VS Code agents can only access files within the workspace for security reasons
+- **Memory Location**: Your memory directory is typically stored outside your project (e.g., in `~/Documents/` or cloud storage)
+- **Solution**: Adding the memory directory to the workspace elevates file access permissions, allowing agents to read and write memory files
+
+#### Method 1: Using Command Palette (Easiest)
 
 **In Cursor/VS Code**:
-1. Open Command Palette (`Cmd+Shift+P` on macOS, `Ctrl+Shift+P` on Windows/Linux)
-2. Search for "Add Folder to Workspace" or "Workspaces: Add Folder to Workspace"
-3. Select your memory directory (the directory configured in `AGENTS.md`)
+1. Open Command Palette:
+   - **macOS**: `Cmd+Shift+P`
+   - **Windows/Linux**: `Ctrl+Shift+P`
+2. Type and select: **"Add Folder to Workspace"** or **"Workspaces: Add Folder to Workspace"**
+3. Navigate to and select your memory directory (the directory configured in `AGENTS.md`)
+   - Example: `~/Library/CloudStorage/GoogleDrive-you@gmail.com/My Drive/AI/your-memory-dir`
+   - Or: `~/Documents/your-memory-dir`
+4. The memory directory will appear as a separate folder in your workspace sidebar
 
-Alternatively, you can add it via `.code-workspace` file or workspace settings.
+#### Method 2: Using Workspace File (For Multi-Folder Workspaces)
+
+If you prefer to manage your workspace via a `.code-workspace` file:
+
+1. Create or edit `.code-workspace` file in your project root:
+```json
+{
+  "folders": [
+    {
+      "path": "."
+    },
+    {
+      "path": "/Users/username/Documents/your-memory-dir"
+    }
+  ],
+  "settings": {}
+}
+```
+
+2. Replace the second `path` with your actual memory directory path
+3. Open the workspace file: `File > Open Workspace from File...` and select your `.code-workspace` file
+
+#### Method 3: Using Workspace Settings (Alternative)
+
+1. Open Command Palette (`Cmd+Shift+P` / `Ctrl+Shift+P`)
+2. Type: **"Preferences: Open Workspace Settings"**
+3. Add your memory directory path to workspace settings (if supported by your editor version)
+
+#### Verification
+
+After adding the memory directory to your workspace:
+- ✅ The memory directory should appear in your workspace sidebar
+- ✅ You should be able to browse memory files in the editor
+- ✅ Agents will be able to read and write memory files
+
+**Note**: If you're using cloud storage (Google Drive, iCloud, etc.), make sure the path is accessible and the directory exists before adding it to the workspace.
 
 ### 6. Initialize Memory for Your Project
 
@@ -330,6 +516,44 @@ Agents automatically:
 - **Use RAG** to retrieve only relevant memories, minimizing token usage
 
 **Note**: Cursor agents will automatically sync memory during conversations. Manual sync is typically not needed, but prompts are provided below if you want to trigger it manually.
+
+### ⚠️ Agent Command Permissions
+
+**IMPORTANT**: The memory system requires agents to execute file system commands to create, read, and write memory files. This is **beyond the capabilities of the simple markdown-based system** and requires explicit permission from your editor.
+
+#### Commands Agents May Execute
+
+Agents may execute the following types of commands (these are safe file operations):
+- **File/Folder Creation**: `mkdir`, `touch` - Creating memory directories and files
+- **File Reading**: `cat`, `head`, `grep` - Reading memory files and searching content
+- **File Writing**: `echo`, `printf` - Writing memory content to files
+- **File Operations**: `cp`, `mv`, `ls` - Organizing and managing memory files
+
+#### Permission Requirements
+
+**You must whitelist these commands** in your editor or system:
+
+**Cursor**:
+- Go to Settings → Agent → Command Execution
+- Add the above commands to your allowed commands list
+- Or grant permission when prompted during agent operations
+
+**VS Code**:
+- Similar settings in VS Code extensions that support command execution
+- Check your AI assistant extension settings
+
+**Antivirus/Security Software**:
+- Some antivirus programs may block these operations
+- Add exceptions for your project folder and memory directory
+- Allow file system operations from your editor
+
+#### Why This Is Required
+
+- **Security**: Editors prevent arbitrary command execution for safety
+- **File Access**: Memory files are stored outside the project workspace
+- **System Integration**: Required for the memory system to function properly
+
+**Note**: These commands are **safe file operations only** - they cannot execute harmful code, install software, or access the internet. The memory system only creates, reads, and writes text files.
 
 ### 🚀 Advanced RAG (Retrieval-Augmented Generation) Support
 
@@ -421,6 +645,7 @@ All these prompts will trigger the agent to intelligently search memory files us
 ## Memory System Documentation
 
 - **Memory System**: See `_agents-md/memory/` for memory-specific documentation
+  - **Commands**: `_agents-md/memory/commands.md` - Safe command usage for agents (CRITICAL)
   - **Organization**: `_agents-md/memory/organization.md` - Memory management rules
   - **RAG**: `_agents-md/memory/rag.md` - RAG strategies and token optimization
   - **Platform**: `_agents-md/memory/platform.md` - Platform-specific paths and tools
@@ -523,3 +748,4 @@ The Memory System was inspired by an earlier memory system design created and de
 
 Paulus Ery Wasito Adhi (paupawsan@gmail.com)
 
+<!-- #agents-md #memory-system #ai-assistants #rag #retrieval-augmented-generation #cursor #vscode #workflow-automation -->

@@ -179,3 +179,5 @@ common/patterns.md ← (agents check automatically)
 3. **Decisions are gold**: Document why you chose something, not just what
 4. **Regular analysis**: Use the prompts in `GLOBAL.md` weekly/monthly for insights
 
+<!-- #templates #memory-structure #organization #best-practices #agent-prompts -->
+

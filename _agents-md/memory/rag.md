@@ -55,3 +55,5 @@ Query?
 - Selective reading: 70-90% reduction vs full file
 - Header navigation: 50-70% reduction vs full file
 
+<!-- #rag #retrieval-augmented-generation #semantic-search #token-optimization #memory-retrieval #search-strategy -->
+
