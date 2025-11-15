@@ -278,7 +278,7 @@ You have two options for setting up the memory system in your project:
    - The `agents-md` folder will appear in your workspace sidebar
 
 2. **AGENTS.md is automatically detected**:
-   - Recent versions of Cursor automatically detect `AGENTS.md` files in the workspace
+   - **Cursor Version: 2.0.77+** and **VSCode Version: 1.99.3+** automatically detect `AGENTS.md` files in subfolders
    - The `AGENTS.md` file in the `agents-md` folder will be used as active rules
    - No need to copy `AGENTS.md` to your project root
 
@@ -286,11 +286,26 @@ You have two options for setting up the memory system in your project:
    - You still need to copy the `_agents-md` folder to your project root, OR
    - Add it to your workspace as well (it will be accessible from the `agents-md` folder)
 
+**Alternative: Subfolder Integration (No Workspace Required)**
+
+If you don't want to create a workspace, you can copy the entire `agents-md` folder into a subfolder of your project:
+
+```bash
+# Copy agents-md into your project as a subfolder
+cp -r /path/to/agents-md ./agents-md
+
+# Or add as git submodule (recommended for developers)
+git submodule add <repository-url> ./agents-md
+```
+
+With recent versions of Cursor/VS Code, `AGENTS.md` will be automatically detected even in subfolders, making this approach work seamlessly.
+
 **Benefits of this approach**:
 - ✅ No need to copy `AGENTS.md` to each project
 - ✅ Easy to update - changes in `agents-md` repository apply automatically
 - ✅ Cleaner project structure - no duplicate files
 - ✅ Works great with multiple projects sharing the same setup
+- ✅ No workspace creation required (subfolder method)
 
 #### Option B: Copy Files to Project (Traditional Method)
 
