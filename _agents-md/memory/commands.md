@@ -155,4 +155,4 @@ EOF
 
 ---
 
-#commands #safety #file-operations #git-commands #memory-system #agent-guidelines
+<!-- #commands #safety #file-operations #git-commands #memory-system #agent-guidelines -->
