@@ -14,6 +14,24 @@ A collection of systems and tools for AI coding agents, built from real-world wo
 
 **Current Status**: The Memory System is the first system available. Additional systems will be added over time as they are developed and refined through practical application.
 
+## 🚀 Quick Start
+
+**New to this? Not a programmer?** → Start with **[SIMPLE_SETUP.md](SIMPLE_SETUP.md)** - A step-by-step guide written in plain language, perfect for non-technical users.
+
+**Experienced developer?** → Jump to [Memory System Setup](#memory-system-setup) section below.
+
+### What You'll Do (Simple Version)
+
+1. **Get the files** - Download or clone this repository
+2. **Choose a name** - Pick a simple name for your memory folder (e.g., `my-memory`)
+3. **Set up AGENTS.md** - Copy template and replace one placeholder word
+4. **Copy to your project** - Copy two files/folders to your project
+5. **Choose memory location** - Decide where to store memories (usually Documents folder)
+6. **Add to workspace** - Add memory folder to Cursor/VS Code workspace
+7. **Test it** - Ask AI to initialize memory
+
+**That's it!** The detailed guide in [SIMPLE_SETUP.md](SIMPLE_SETUP.md) walks you through each step with screenshots descriptions and troubleshooting tips.
+
 ### Available Systems
 
 #### 🧠 Memory System (Current)
@@ -171,6 +189,10 @@ The goal is to provide a **simple, transparent, and powerful** foundation that w
 
 ## Memory System Setup
 
+> **💡 For Non-Technical Users**: If you're not comfortable with command-line tools or technical jargon, please use the **[SIMPLE_SETUP.md](SIMPLE_SETUP.md)** guide instead. It provides step-by-step instructions with plain language explanations.
+
+This section provides technical setup instructions for developers. The setup process involves configuring file paths, copying files, and setting up workspace access.
+
 ### 1. Clone or Initialize the Memory Repository
 
 First, clone this repository or set up the memory storage location:
@@ -192,6 +214,8 @@ cd ~/Documents/agents-md
 ### 2. Configure Memory Directory Name
 
 **CRITICAL**: You must replace `{MEMORY_DIR}` placeholder in `AGENTS.md` with your chosen directory name.
+
+> **💡 Tip**: If you're not comfortable with find-and-replace, see [SIMPLE_SETUP.md](SIMPLE_SETUP.md) for detailed visual instructions.
 
 #### Option A: Manual Replacement (Recommended for Non-Engineers)
 
@@ -229,15 +253,69 @@ The script will:
 1. **Copy `_agents-md` folder** - Contains memory system prompts and guidelines
 2. **Copy `AGENTS.md`** - Contains agent rules and memory configuration (already configured with your chosen directory name)
 
+**Using Command Line**:
 ```bash
 # From your project root
 cp -r /path/to/agents-md/_agents-md .
 cp /path/to/agents-md/AGENTS.md ./AGENTS.md
 ```
 
+**Using File Manager** (Easier for non-technical users):
+- Navigate to the `agents-md` folder
+- Copy the `_agents-md` folder and `AGENTS.md` file
+- Navigate to your project folder
+- Paste both items
+
+> **💡 For detailed file copying instructions**, see [SIMPLE_SETUP.md](SIMPLE_SETUP.md) Step 4.
+
 **Important**: If your project already has an `AGENTS.md` file, **append** the content from agents-md's `AGENTS.md` to your existing file to avoid conflicts.
 
 **✅ Compatibility Note**: agents-md is fully compatible with existing Cursor rules and user rules. The memory system rules will work alongside your existing `AGENTS.md` content.
+
+### 3.5. Language Selection (Optional)
+
+**AGENTS.md** supports both English and Japanese. You can choose your preferred language using either the automated script or manual setup.
+
+#### Option A: Automated Script (Recommended)
+
+Use the provided Python script to switch between languages:
+
+```bash
+# Switch to Japanese
+python3 switch_agents_lang.py ja
+
+# Switch to English  
+python3 switch_agents_lang.py en
+
+# Check current language
+python3 switch_agents_lang.py
+```
+
+The script maintains separate source files (`AGENTS.md.en` and `AGENTS.md.ja`) and copies the appropriate one to `AGENTS.md` based on your selection.
+
+#### Option B: Manual Setup (Simple Alternative)
+
+If you prefer manual setup or don't want to use the script, you can manually clone and rename the template files:
+
+**For English**:
+```bash
+# Copy the English template to AGENTS.md
+cp AGENTS.md.en AGENTS.md
+```
+
+**For Japanese**:
+```bash
+# Copy the Japanese template to AGENTS.md
+cp AGENTS.md.ja AGENTS.md
+```
+
+**Note**: The idea is to keep a single `AGENTS.md` file in your project root. The `AGENTS.md.en` and `AGENTS.md.ja` files serve as templates that you clone and rename to `AGENTS.md` based on your language preference.
+
+**Important**: After manually copying, make sure to:
+1. Replace `{MEMORY_DIR}` placeholder in the copied `AGENTS.md` (if not already done)
+2. Configure the memory path in `AGENTS.md` (see step 4)
+
+**Note**: Language switching only affects `AGENTS.md`. Documentation files (like `README.md`) have separate Japanese versions (e.g., `README.ja.md`) that don't affect agent functionality.
 
 ### 4. Configure Memory Path in AGENTS.md
 
@@ -256,14 +334,64 @@ cp /path/to/agents-md/AGENTS.md ./AGENTS.md
 
 ### 5. Add Memory Directory to Workspace (Cursor/VS Code)
 
-**IMPORTANT**: For Cursor (or VS Code-based editors) to access external memory files, you need to add your memory directory to your project workspace.
+**CRITICAL**: Cursor and VS Code cannot access files outside the workspace by default. To enable file access permissions for the memory system, you **must** add your memory directory to your project workspace.
+
+> **💡 Need help with this step?** See [SIMPLE_SETUP.md](SIMPLE_SETUP.md) Step 6 for detailed instructions with troubleshooting tips.
+
+#### Why This Is Required
+
+- **File Access Limitation**: Cursor/VS Code agents can only access files within the workspace for security reasons
+- **Memory Location**: Your memory directory is typically stored outside your project (e.g., in `~/Documents/` or cloud storage)
+- **Solution**: Adding the memory directory to the workspace elevates file access permissions, allowing agents to read and write memory files
+
+#### Method 1: Using Command Palette (Easiest)
 
 **In Cursor/VS Code**:
-1. Open Command Palette (`Cmd+Shift+P` on macOS, `Ctrl+Shift+P` on Windows/Linux)
-2. Search for "Add Folder to Workspace" or "Workspaces: Add Folder to Workspace"
-3. Select your memory directory (the directory configured in `AGENTS.md`)
+1. Open Command Palette:
+   - **macOS**: `Cmd+Shift+P`
+   - **Windows/Linux**: `Ctrl+Shift+P`
+2. Type and select: **"Add Folder to Workspace"** or **"Workspaces: Add Folder to Workspace"**
+3. Navigate to and select your memory directory (the directory configured in `AGENTS.md`)
+   - Example: `~/Library/CloudStorage/GoogleDrive-you@gmail.com/My Drive/AI/your-memory-dir`
+   - Or: `~/Documents/your-memory-dir`
+4. The memory directory will appear as a separate folder in your workspace sidebar
 
-Alternatively, you can add it via `.code-workspace` file or workspace settings.
+#### Method 2: Using Workspace File (For Multi-Folder Workspaces)
+
+If you prefer to manage your workspace via a `.code-workspace` file:
+
+1. Create or edit `.code-workspace` file in your project root:
+```json
+{
+  "folders": [
+    {
+      "path": "."
+    },
+    {
+      "path": "/Users/username/Documents/your-memory-dir"
+    }
+  ],
+  "settings": {}
+}
+```
+
+2. Replace the second `path` with your actual memory directory path
+3. Open the workspace file: `File > Open Workspace from File...` and select your `.code-workspace` file
+
+#### Method 3: Using Workspace Settings (Alternative)
+
+1. Open Command Palette (`Cmd+Shift+P` / `Ctrl+Shift+P`)
+2. Type: **"Preferences: Open Workspace Settings"**
+3. Add your memory directory path to workspace settings (if supported by your editor version)
+
+#### Verification
+
+After adding the memory directory to your workspace:
+- ✅ The memory directory should appear in your workspace sidebar
+- ✅ You should be able to browse memory files in the editor
+- ✅ Agents will be able to read and write memory files
+
+**Note**: If you're using cloud storage (Google Drive, iCloud, etc.), make sure the path is accessible and the directory exists before adding it to the workspace.
 
 ### 6. Initialize Memory for Your Project
 
