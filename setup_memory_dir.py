@@ -75,10 +75,15 @@ def get_memory_path():
     print("  - /Users/username/Library/CloudStorage/GoogleDrive-user@gmail.com/My Drive/AI/memory")
     print("  - C:\\Users\\username\\Documents\\my-memory (Windows)")
     print("\nNote: You can use ~ for home directory. Spaces and special characters are handled automatically.")
-    print("The folder will be created if it doesn't exist.\n")
+    print("No need to quote paths - just type them normally. The folder will be created if it doesn't exist.\n")
     
     while True:
         memory_path = input("Enter memory root path: ").strip()
+
+        # Strip surrounding quotes if present (users might quote paths with spaces)
+        if (memory_path.startswith('"') and memory_path.endswith('"')) or \
+           (memory_path.startswith("'") and memory_path.endswith("'")):
+            memory_path = memory_path[1:-1]
 
         if not memory_path:
             print("Error: Path cannot be empty.\n")
