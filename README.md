@@ -22,6 +22,11 @@ A robust, RAG-optimized memory management system with multi-platform support. Pr
 
 **Note**: The memory directory name is user-configurable. Throughout this documentation, `{MEMORY_DIR}` represents your chosen directory name (e.g., `agent-memory`, `my-memory`, `ai-memory`, etc.). Replace `{MEMORY_DIR}` with your chosen name when configuring the system.
 
+**Workflow Options**:
+- **Structured Workflow**: Full memory system with `topic/`, `session/`, indexing (best for complex projects)
+- **Simple Workflow**: Single-file templates for quick daily logging (best for vibecoding and experiments)
+- See `templates/README.md` for templates and guidance on choosing your workflow
+
 ### Future Systems
 
 More systems will be added based on work experience and practical needs. Each system will be:
@@ -419,6 +424,9 @@ All these prompts will trigger the agent to intelligently search memory files us
   - **Organization**: `_agents-md/memory/organization.md` - Memory management rules
   - **RAG**: `_agents-md/memory/rag.md` - RAG strategies and token optimization
   - **Platform**: `_agents-md/memory/platform.md` - Platform-specific paths and tools
+- **Templates**: See `templates/` for workflow templates
+  - **Simple Workflow**: `templates/AGENTS.md.simple` and `templates/GLOBAL.md` for quick daily logging
+  - **Template Guide**: `templates/README.md` - When to use which workflow
 
 ## Memory System Initialization & Manual Sync
 

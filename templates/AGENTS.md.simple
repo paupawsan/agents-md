@@ -1,0 +1,101 @@
+<!--
+Simple AGENTS.md Template for Daily Vibecoding
+Integrates with agents-md Memory System
+
+This template provides quick daily logging while still syncing to the agents-md memory system.
+The agent will automatically extract patterns and sync important content to {MEMORY_PATH}/[project-name]/
+
+See _agents-md/memory/organization.md for memory sync rules.
+-->
+
+# Project: <Project Name>
+
+**Memory Path**: `{MEMORY_PATH}/[project-name]/`  
+**Note**: Replace `{MEMORY_PATH}` with your configured memory root path. The agent will sync important patterns and decisions to the memory system automatically.
+
+## Today (YYYY-MM-DD)
+
+- [x] Implemented ...
+- [ ] TODO: ...
+- Notes:
+  - Why I chose X
+  - Problems: ...
+
+## Session Log
+
+### YYYY-MM-DD HH:MM–HH:MM
+
+- Context: brief description of what you're working on
+- Actions:
+  - Tried A → failed because ...
+  - Switched to B
+- Result:
+  - Current status: X% done
+- Tags: #tag1 #tag2 #tag3
+
+### YYYY-MM-DD HH:MM–HH:MM
+
+- Context: another session
+- Decisions:
+  - Use markdown, not DB
+  - Separate project vs global memory
+- Tags: #design #memory
+
+## Project Decisions
+
+- YYYY-MM-DD: Decision about X because Y
+- YYYY-MM-DD: Chose framework Z over W because ...
+
+## Patterns & Learnings
+
+- Pattern: When I do X, Y happens
+- Learning: Avoid Z because ...
+- Note: Remember to check A before B
+
+## Ideas Backlog
+
+- [ ] Idea 1
+- [ ] Idea 2
+
+---
+
+## Memory System Integration
+
+**CRITICAL**: This project uses agents-md Memory System. Agents MUST sync content to external memory files.
+
+**Memory Path**: `{MEMORY_PATH}/[project-name]/`  
+**Configure**: Replace `{MEMORY_PATH}` with your configured memory root path (e.g., `/Users/username/Documents/my-memory`)
+
+### Memory Sync Rules (MANDATORY)
+
+**After significant work sessions**, agents MUST sync important content:
+
+1. **Patterns & Learnings** → Extract to `{MEMORY_PATH}/[project-name]/topic/` as knowledge files
+2. **Project Decisions** → Update `{MEMORY_PATH}/[project-name]/context.md`
+3. **Session Logs** → Consolidate to `{MEMORY_PATH}/[project-name]/session/YYYY-MM/` when complete
+4. **Update Index**: Always update `{MEMORY_PATH}/[project-name]/memories.json` when syncing
+
+**Privacy Check (MANDATORY FIRST)**:
+- ⚠️ Personal/private info? → `{MEMORY_PATH}/private/` ONLY
+- ⚠️ Names, emails, credentials? → `{MEMORY_PATH}/private/` ONLY
+- ✅ If NO → Continue to memory sync
+
+**When to Sync**: After significant tasks, when discovering patterns, at conversation end.
+
+**Recovery**: If context lost, check `{MEMORY_PATH}/common/preferences.md`, then `{MEMORY_PATH}/[project-name]/context.md`, then use semantic search.
+
+**Global Memory**: 
+- Standard files (agents check automatically): `{MEMORY_PATH}/common/preferences.md` and `{MEMORY_PATH}/common/patterns.md`
+- Optional `GLOBAL.md`: If you use `{MEMORY_PATH}/common/global.md`, add this section below to tell agents to check it:
+  
+  ```markdown
+  ## Global Memory Reference
+  For cross-project patterns and personal notes, also check: `{MEMORY_PATH}/common/global.md`
+  ```
+  
+  Without this reference, agents will only use the standard `common/preferences.md` and `common/patterns.md` files.
+
+### Full Memory System Rules
+
+See `_agents-md/memory/organization.md` for complete memory organization rules, RAG strategies, and platform-specific paths.
+
