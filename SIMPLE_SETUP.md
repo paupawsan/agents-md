@@ -96,7 +96,38 @@ Now you need to replace `{MEMORY_DIR}` with the name you chose in Step 2.
 
 ---
 
-### Step 4: Copy Files to Your Project
+### Step 4: Set Up Files in Your Project
+
+You have two ways to set up the memory system. Choose the one that works best for you:
+
+#### Option A: Workspace Setup (Easier - Recommended for Cursor/VS Code)
+
+**If you're using Cursor or VS Code**, you can add the `agents-md` folder to your workspace instead of copying files:
+
+1. **Open Cursor or VS Code**
+2. **Open your project folder** (File → Open Folder)
+3. **Add agents-md to workspace**:
+   - Press `Cmd+Shift+P` (Mac) or `Ctrl+Shift+P` (Windows/Linux)
+   - Type: `Add Folder to Workspace`
+   - Select "Add Folder to Workspace"
+   - Navigate to and select your `agents-md` folder
+   - Click "Add" or "Select Folder"
+
+4. **AGENTS.md is automatically detected**:
+   - Recent versions of Cursor automatically find `AGENTS.md` files in your workspace
+   - The `AGENTS.md` file in the `agents-md` folder will be used automatically
+   - You don't need to copy `AGENTS.md` to your project!
+
+5. **Copy `_agents-md` folder** (still needed):
+   - You still need to copy the `_agents-md` folder to your project folder
+   - Or add it to your workspace too (it's already in the `agents-md` folder you just added)
+
+**Why this is easier**:
+- ✅ No need to copy `AGENTS.md` to each project
+- ✅ Updates automatically when you update the `agents-md` folder
+- ✅ Works with multiple projects easily
+
+#### Option B: Copy Files (Traditional Method)
 
 Now you need to copy two things to your project folder (the project where you want to use the memory system).
 

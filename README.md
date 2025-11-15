@@ -25,12 +25,16 @@ A collection of systems and tools for AI coding agents, built from real-world wo
 1. **Get the files** - Download or clone this repository
 2. **Choose a name** - Pick a simple name for your memory folder (e.g., `my-memory`)
 3. **Set up AGENTS.md** - Copy template and replace one placeholder word
-4. **Copy to your project** - Copy two files/folders to your project
+4. **Set up in your project** - Either:
+   - **Option A (Easier)**: Add `agents-md` folder to your workspace - Cursor/VS Code will automatically detect `AGENTS.md`
+   - **Option B**: Copy files to your project folder
 5. **Choose memory location** - Decide where to store memories (usually Documents folder)
 6. **Add to workspace** - Add memory folder to Cursor/VS Code workspace
 7. **Test it** - Ask AI to initialize memory
 
 **That's it!** The detailed guide in [SIMPLE_SETUP.md](SIMPLE_SETUP.md) walks you through each step with screenshots descriptions and troubleshooting tips.
+
+**💡 Tip**: If you're using Cursor or VS Code, the workspace-based setup (Option A) is much easier - no need to copy `AGENTS.md` to each project!
 
 ### Available Systems
 
@@ -246,7 +250,36 @@ The script will:
 
 **Note**: The script requires Python 3.6+. If you're not comfortable with Python or command-line tools, use Option A (manual replacement) instead - it's just as effective and easier.
 
-### 3. Copy Files to Your Project
+### 3. Set Up Files in Your Project
+
+You have two options for setting up the memory system in your project:
+
+#### Option A: Workspace-Based Setup (Recommended for Cursor/VS Code)
+
+**If your editor supports workspaces** (like Cursor and VS Code), you can add the cloned `agents-md` repository directly to your workspace instead of copying files:
+
+1. **Add agents-md to your workspace**:
+   - Open Command Palette (`Cmd+Shift+P` / `Ctrl+Shift+P`)
+   - Select "Add Folder to Workspace"
+   - Navigate to and select your cloned `agents-md` folder
+   - The `agents-md` folder will appear in your workspace sidebar
+
+2. **AGENTS.md is automatically detected**:
+   - Recent versions of Cursor automatically detect `AGENTS.md` files in the workspace
+   - The `AGENTS.md` file in the `agents-md` folder will be used as active rules
+   - No need to copy `AGENTS.md` to your project root
+
+3. **Copy `_agents-md` folder** (still needed):
+   - You still need to copy the `_agents-md` folder to your project root, OR
+   - Add it to your workspace as well (it will be accessible from the `agents-md` folder)
+
+**Benefits of this approach**:
+- ✅ No need to copy `AGENTS.md` to each project
+- ✅ Easy to update - changes in `agents-md` repository apply automatically
+- ✅ Cleaner project structure - no duplicate files
+- ✅ Works great with multiple projects sharing the same setup
+
+#### Option B: Copy Files to Project (Traditional Method)
 
 **Copy the following to your project root:**
 
