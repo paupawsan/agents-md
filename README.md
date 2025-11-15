@@ -6,13 +6,35 @@ Licensed under the MIT License. See LICENSE file for details.
 
 # agents-md
 
-Advanced Memory System for AI Coding Agents - A robust, RAG-optimized memory management system with multi-platform support.
-
-**Note**: The memory directory name is user-configurable. Throughout this documentation, `{MEMORY_DIR}` represents your chosen directory name (e.g., `agent-memory`, `my-memory`, `ai-memory`, etc.). Replace `{MEMORY_DIR}` with your chosen name when configuring the system.
+A collection of systems and tools for AI coding agents, built from real-world work experience. Currently includes a robust Memory System, with more systems planned for the future.
 
 ## Overview
 
-agents-md provides a systematic approach to storing and retrieving project-specific knowledge, user preferences, and cross-project patterns for AI coding agents. The system is optimized for **RAG (Retrieval-Augmented Generation)**, token efficiency, and fast retrieval across multiple platforms.
+**agents-md** is a growing collection of practical systems and tools designed to enhance AI coding agents' capabilities. Each system is developed based on real-world work experience and production use cases.
+
+**Current Status**: The Memory System is the first system available. Additional systems will be added over time as they are developed and refined through practical application.
+
+### Available Systems
+
+#### 🧠 Memory System (Current)
+
+A robust, RAG-optimized memory management system with multi-platform support. Provides a systematic approach to storing and retrieving project-specific knowledge, user preferences, and cross-project patterns for AI coding agents.
+
+**Note**: The memory directory name is user-configurable. Throughout this documentation, `{MEMORY_DIR}` represents your chosen directory name (e.g., `agent-memory`, `my-memory`, `ai-memory`, etc.). Replace `{MEMORY_DIR}` with your chosen name when configuring the system.
+
+### Future Systems
+
+More systems will be added based on work experience and practical needs. Each system will be:
+- **Production-tested**: Developed and refined through real-world use
+- **Well-documented**: Comprehensive documentation and examples
+- **Modular**: Can be used independently or combined with other systems
+- **Agent-compatible**: Designed to work seamlessly with AI coding agents
+
+---
+
+## Memory System
+
+The following sections document the Memory System, which is currently available.
 
 **🚀 Key Features**:
 - **Advanced RAG Support**: Intelligent semantic search with multi-level indexing
@@ -142,7 +164,7 @@ There are many memory solutions available, including MCP (Model Context Protocol
 
 The goal is to provide a **simple, transparent, and powerful** foundation that works well for most use cases while remaining flexible enough to integrate with other tools when needed.
 
-## Setup
+## Memory System Setup
 
 ### 1. Clone or Initialize the Memory Repository
 
@@ -269,7 +291,7 @@ Ensure that:
 - The memory directory is added to your Cursor workspace
 - The memory directory exists and is writable
 
-## Usage
+## Memory System Usage
 
 ### Memory Structure
 
@@ -391,14 +413,14 @@ All these prompts will trigger the agent to intelligently search memory files us
 - **Session Archives** (`sessions/YYYY-MM/YYYY-MM-DD_summary.md`): Consolidated work sessions
 - **Index Files** (`index.json`, `index.md`): Fast lookup and quick reference
 
-## Documentation
+## Memory System Documentation
 
 - **Memory System**: See `_agents-md/memory/` for memory-specific documentation
   - **Organization**: `_agents-md/memory/organization.md` - Memory management rules
   - **RAG**: `_agents-md/memory/rag.md` - RAG strategies and token optimization
   - **Platform**: `_agents-md/memory/platform.md` - Platform-specific paths and tools
 
-## Memory Initialization & Manual Sync
+## Memory System Initialization & Manual Sync
 
 ### Memory Initialization Prompt
 
@@ -424,9 +446,9 @@ To update memory with current project status:
 Update project memory with current status. Document recent changes, update index files, and sync any new patterns or architectural decisions.
 ```
 
-## Platform Support
+## Memory System Platform Support
 
-agents-md supports multiple platforms with platform-specific optimizations:
+The Memory System supports multiple platforms with platform-specific optimizations:
 
 - **macOS**: Cloud storage detection, Spotlight search integration
 - **Linux**: Filesystem-specific optimizations, efficient search tools
@@ -434,7 +456,7 @@ agents-md supports multiple platforms with platform-specific optimizations:
 
 See `_agents-md/memory/platform.md` for platform-specific documentation.
 
-## Security
+## Memory System Security
 
 ⚠️ **IMPORTANT**: Private memory (`{MEMORY_DIR}/secure/`) contains sensitive information:
 - Never commit private memory files to version control
@@ -448,7 +470,7 @@ MIT License - See [LICENSE](LICENSE) file for details.
 
 ---
 
-## Comparison with Other Systems
+## Memory System Comparison
 
 ### Key Improvements
 
@@ -470,13 +492,24 @@ MIT License - See [LICENSE](LICENSE) file for details.
 - ✅ Multi-platform support
 - ✅ Faster retrieval through indexing
 
+## Project Roadmap
+
+**agents-md** is an evolving collection of systems. Future additions will include:
+
+- Additional systems based on real-world work experience
+- Integration patterns between systems
+- Best practices and workflows
+- Community-contributed systems (subject to review and quality standards)
+
+Each new system will follow the same principles: production-tested, well-documented, modular, and agent-compatible.
+
 ## Contributing
 
 This is a personal project, but suggestions and improvements are welcome. Please ensure any contributions maintain the MIT license and attribution.
 
 ## Acknowledgements
 
-This project was inspired by an earlier memory system design created and developed during work at [Rudel, inc.](https://rudel.jp). The foundational concepts and architectural patterns were refined and adapted for this open-source implementation.
+The Memory System was inspired by an earlier memory system design created and developed during work at [Rudel, inc.](https://rudel.jp). The foundational concepts and architectural patterns were refined and adapted for this open-source implementation.
 
 ## Author
 
