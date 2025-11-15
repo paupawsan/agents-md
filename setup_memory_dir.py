@@ -8,6 +8,12 @@ Setup script for configuring the memory system in agents-md.
 
 This script helps configure the memory root path ({MEMORY_PATH} placeholder).
 
+Features:
+- Handles shell-escaped paths automatically (e.g., spaces, special characters)
+- Expands ~ for home directory and environment variables
+- Creates directories if they don't exist
+- Cross-platform path handling
+
 Usage:
     python3 setup_memory_dir.py
 
@@ -15,6 +21,7 @@ For non-engineers: Manual replacement is straightforward and recommended.
 Simply open the AGENTS.md file and replace {MEMORY_PATH} with your full memory root path.
 """
 
+import ast
 import os
 import sys
 from pathlib import Path
@@ -22,6 +29,27 @@ from pathlib import Path
 def get_script_directory():
     """Get the directory where this script is located."""
     return Path(__file__).parent.absolute()
+
+def decode_shell_escaped_string(s):
+    """
+    Decode basic shell-style escaped characters in paths.
+
+    Mainly handles spaces that are escaped with backslash (\\ ),
+    which is common in shell paths but not handled by os.path functions.
+    """
+    # If no backslashes, return as-is
+    if '\\' not in s:
+        return s
+
+    # Handle the most common case: backslash followed by space
+    # This converts "/path/My\ Drive/" to "/path/My Drive/"
+    result = s.replace('\\ ', ' ')
+
+    # Also handle double backslashes that might represent single backslashes
+    # This is common in Windows paths
+    result = result.replace('\\\\', '\\')
+
+    return result
 
 def find_agents_file():
     """Find AGENTS.md file."""
@@ -44,16 +72,21 @@ def get_memory_path():
     print("\nExamples:")
     print("  - ~/Documents/my-memory")
     print("  - /Users/username/Documents/my-memory")
+    print("  - /Users/username/Library/CloudStorage/GoogleDrive-user@gmail.com/My Drive/AI/memory")
     print("  - C:\\Users\\username\\Documents\\my-memory (Windows)")
-    print("\nNote: You can use ~ for home directory. The folder will be created if it doesn't exist.\n")
+    print("\nNote: You can use ~ for home directory. Spaces and special characters are handled automatically.")
+    print("The folder will be created if it doesn't exist.\n")
     
     while True:
         memory_path = input("Enter memory root path: ").strip()
-        
+
         if not memory_path:
             print("Error: Path cannot be empty.\n")
             continue
-        
+
+        # Decode shell-style escaped characters (like \ for spaces)
+        memory_path = decode_shell_escaped_string(memory_path)
+
         # Expand user home directory and environment variables
         memory_path = os.path.expanduser(memory_path)
         memory_path = os.path.expandvars(memory_path)
