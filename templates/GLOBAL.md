@@ -85,3 +85,5 @@ Use these prompts with LLMs to analyze your work:
 
 See `_agents-md/memory/organization.md` for detailed sync rules.
 
+<!-- #global-memory #cross-project #patterns #preferences #agent-prompts #sync-rules -->
+

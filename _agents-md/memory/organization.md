@@ -63,3 +63,5 @@ Licensed under the MIT License. See LICENSE file for details.
 - ✅ Only when explicitly needed
 - ✅ Mask sensitive data (e.g., "API key: ***hidden***")
 - ❌ Never expose private info in responses
+
+<!-- #memory-organization #file-structure #security #privacy #agent-guidelines #rag-strategy -->

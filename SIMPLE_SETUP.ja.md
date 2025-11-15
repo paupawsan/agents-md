@@ -356,5 +356,5 @@ AIアシスタントは、メモリファイルを作成および管理するた
 
 **心配しないでください**: これらはファイル操作だけです。AIは危険なコマンドを実行できません - 安全なファイルの読み取り/書き込みだけです。
 
----
+<!-- #setup-guide #non-technical #beginners #memory-system #cursor #vscode #workspace-setup #セットアップガイド #初心者向け #非技術者 #メモリシステム #cursor #vscode #ワークスペース設定 -->
 

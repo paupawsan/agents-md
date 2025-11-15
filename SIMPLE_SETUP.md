@@ -356,5 +356,5 @@ The AI assistant needs to run safe commands to create and manage memory files:
 
 **Don't worry**: These are just file operations. The AI can't run dangerous commands - only safe file reading/writing.
 
----
+<!-- #setup-guide #non-technical #beginners #memory-system #cursor #vscode #workspace-setup -->
 

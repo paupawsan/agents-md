@@ -63,3 +63,5 @@ When using the memory system:
 
 For questions or issues, refer to the main [README.md](../README.md) or the specific documentation files listed above.
 
+<!-- #memory-system #documentation #agent-guidelines #rag #retrieval-strategies #platform-support #command-safety -->
+

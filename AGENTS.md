@@ -75,3 +75,5 @@ Use `setup_memory_dir.py` script or manual replacement to configure.
 - `_agents-md/memory/organization.md` - Organization rules
 - `_agents-md/memory/rag.md` - RAG strategies
 - `_agents-md/memory/platform.md` - Platform paths
+
+<!-- #agent-rules #memory-system #rag #retrieval-augmented-generation #commands #safety #organization -->
