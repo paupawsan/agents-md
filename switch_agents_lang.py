@@ -49,27 +49,50 @@ def extract_memory_path(content):
         return None
     
     # Look for configured paths in common patterns
-    # Pattern 1: Lines like "Root: /path/to/memory" or "Root: `{MEMORY_PATH}`"
-    # Pattern 2: Lines with memory path references
+    # The path might appear in various formats:
+    # - Root: `/path/to/memory`
+    # - ルート: `/path/to/memory` (Japanese)
+    # - `/path/to/memory` (in backticks)
+    # - Paths with spaces like "/My Drive/AI/cursor-memory"
+    
     lines = content.split('\n')
     for line in lines:
-        # Look for lines mentioning memory path
-        if 'MEMORY_PATH' in line or ('memory' in line.lower() and ('root' in line.lower() or 'path' in line.lower())):
-            # Try to extract absolute path (starts with / or ~ or drive letter)
-            # Match paths that don't contain {MEMORY_PATH} placeholder
-            patterns = [
-                r'Root:\s*[`"]?([~/]?[/\\][^\s`"\)]+memory[^\s`"\)]*)',  # Root: /path/to/memory
-                r'`([~/]?[/\\][^\s`]+memory[^\s`]+)`',  # `/path/to/memory`
-                r'([~/]?[/\\][^\s\)]+memory[^\s\)]+)',  # /path/to/memory
+        # Look for lines mentioning memory path (English or Japanese)
+        if ('memory' in line.lower() and ('root' in line.lower() or 'path' in line.lower() or 'ルート' in line or 'パス' in line)) or 'cursor-memory' in line.lower():
+            # Pattern 1: Extract path from backticks (most reliable)
+            backtick_pattern = r'`([^`]+)`'
+            backtick_matches = re.findall(backtick_pattern, line)
+            for match in backtick_matches:
+                # Check if it looks like a path (contains / or \)
+                if ('/' in match or '\\' in match) and '{MEMORY_PATH}' not in match:
+                    # Check if it contains "memory" or looks like a full path
+                    if 'memory' in match.lower() or match.startswith('/') or match.startswith('~') or (len(match) > 20 and ('/' in match or '\\' in match)):
+                        return match.strip()
+            
+            # Pattern 2: Extract path after "Root:" or "ルート:" (handles paths with spaces)
+            root_patterns = [
+                r'(?:ルート|Root):\s*[`"]?([^`"\n]+(?:memory|cursor-memory)[^`"\n]*)',  # Japanese or English "Root:"
+                r'[`"]([^`"]+memory[^`"]*)[`"]',  # Path in quotes/backticks containing "memory"
             ]
-            for pattern in patterns:
+            for pattern in root_patterns:
                 matches = re.findall(pattern, line, re.IGNORECASE)
                 for match in matches:
-                    if match and '{MEMORY_PATH}' not in match:
-                        # Clean up the path
-                        path = match.strip('`"\'')
-                        if path and ('/' in path or '\\' in path or path.startswith('~')):
-                            return path
+                    match = match.strip()
+                    # Check if it's a valid path
+                    if match and ('/' in match or '\\' in match) and '{MEMORY_PATH}' not in match:
+                        # Must contain "memory" or be a long path
+                        if 'memory' in match.lower() or (len(match) > 15 and match.startswith('/')):
+                            return match
+    
+    # Fallback: Look for any long absolute path that might be the memory path
+    # This is less reliable but catches edge cases
+    long_path_pattern = r'([/\\][^\s`"\)]{20,})'  # Paths longer than 20 chars
+    for line in lines:
+        if 'memory' in line.lower() or 'cursor' in line.lower():
+            matches = re.findall(long_path_pattern, line)
+            for match in matches:
+                if '{MEMORY_PATH}' not in match and ('memory' in match.lower() or 'cursor' in match.lower()):
+                    return match
     
     return None
 
