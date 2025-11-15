@@ -22,7 +22,7 @@ A collection of systems and tools for AI coding agents, built from real-world wo
 
 ### What You'll Do (Simple Version)
 
-1. **Get the files** - Download or clone this repository
+1. **Get the files** - Download as ZIP from GitHub (no Git needed!) or clone this repository
 2. **Choose a name** - Pick a simple name for your memory folder (e.g., `my-memory`)
 3. **Set up AGENTS.md** - Copy template and replace one placeholder word
 4. **Set up in your project** - Either:
@@ -34,7 +34,9 @@ A collection of systems and tools for AI coding agents, built from real-world wo
 
 **That's it!** The detailed guide in [SIMPLE_SETUP.md](SIMPLE_SETUP.md) walks you through each step with screenshots descriptions and troubleshooting tips.
 
-**💡 Tip**: If you're using Cursor or VS Code, the workspace-based setup (Option A) is much easier - no need to copy `AGENTS.md` to each project!
+**💡 Tips**: 
+- **No Git? No problem!** You can download the repository as a ZIP file from GitHub - just click "Code" → "Download ZIP"
+- If you're using Cursor or VS Code, the workspace-based setup (Option A) is much easier - no need to copy `AGENTS.md` to each project!
 
 ### Available Systems
 
@@ -197,16 +199,27 @@ The goal is to provide a **simple, transparent, and powerful** foundation that w
 
 This section provides technical setup instructions for developers. The setup process involves configuring file paths, copying files, and setting up workspace access.
 
-### 1. Clone or Initialize the Memory Repository
+### 1. Get the Repository Files
 
-First, clone this repository or set up the memory storage location:
+You have several options to get the repository files:
+
+#### Option A: Download as ZIP (Easiest for Non-Technical Users)
+
+1. On GitHub, click the green **"Code"** button
+2. Click **"Download ZIP"**
+3. Extract the ZIP file to a location on your computer
+4. Navigate to the extracted `agents-md` folder
+
+**No Git required!** This is the simplest method if you're not familiar with command-line tools.
+
+#### Option B: Clone with Git (For Developers)
 
 ```bash
 git clone <repository-url>
 cd agents-md
 ```
 
-Or if you're setting up a new instance:
+#### Option C: Initialize New Instance
 
 ```bash
 mkdir -p ~/Documents/agents-md

@@ -25,10 +25,23 @@ This is a **memory system** for AI coding assistants (like Cursor). It helps you
 
 ### Step 1: Download or Get the Files
 
-**Option A: If you downloaded this as a folder**
+**Option A: Download as ZIP (Easiest - Recommended for Non-Technical Users)**
+
+If you're on GitHub:
+1. Click the green **"Code"** button at the top of the repository page
+2. Click **"Download ZIP"**
+3. The ZIP file will download to your computer (usually in your Downloads folder)
+4. Find the downloaded ZIP file and double-click it to extract/unzip it
+5. You'll see a folder named `agents-md` (or `agents-md-main`) - this contains all the files you need
+
+**On Mac**: Double-click the ZIP file and it will automatically extract
+**On Windows**: Right-click the ZIP file → "Extract All" → Choose a location
+**On Linux**: Right-click the ZIP file → "Extract Here" or use your archive manager
+
+**Option B: If you already have the files**
 - You already have the files! Just find where you saved the `agents-md` folder.
 
-**Option B: If you're using Git (for developers)**
+**Option C: If you're using Git (for developers)**
 - Skip this step - you already have the files.
 
 **What you should see**: A folder with files like `AGENTS.md`, `README.md`, `_agents-md`, etc.
