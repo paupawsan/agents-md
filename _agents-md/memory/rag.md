@@ -1,3 +1,9 @@
+<!--
+Copyright (c) 2025 Paulus Ery Wasito Adhi paupawsan@gmail.com
+
+Licensed under the MIT License. See LICENSE file for details.
+-->
+
 # RAG Strategy
 
 Token-optimized memory retrieval.

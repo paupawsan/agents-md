@@ -4,7 +4,7 @@ Copyright (c) 2025 Paulus Ery Wasito Adhi paupawsan@gmail.com
 Licensed under the MIT License. See LICENSE file for details.
 -->
 
-# agent-memory
+# agents-md
 
 Advanced Memory System for AI Coding Agents - A robust, RAG-optimized memory management system with multi-platform support.
 
@@ -12,7 +12,7 @@ Advanced Memory System for AI Coding Agents - A robust, RAG-optimized memory man
 
 ## Overview
 
-agent-memory provides a systematic approach to storing and retrieving project-specific knowledge, user preferences, and cross-project patterns for AI coding agents. The system is optimized for **RAG (Retrieval-Augmented Generation)**, token efficiency, and fast retrieval across multiple platforms.
+agents-md provides a systematic approach to storing and retrieving project-specific knowledge, user preferences, and cross-project patterns for AI coding agents. The system is optimized for **RAG (Retrieval-Augmented Generation)**, token efficiency, and fast retrieval across multiple platforms.
 
 **🚀 Key Features**:
 - **Advanced RAG Support**: Intelligent semantic search with multi-level indexing
@@ -41,7 +41,7 @@ There are many memory solutions available, including MCP (Model Context Protocol
 
 ### Design Philosophy
 
-**agent-memory** prioritizes **human readability, transparency, and control** over advanced technical features. Here's why:
+**agents-md** prioritizes **human readability, transparency, and control** over advanced technical features. Here's why:
 
 ### Benefits for Humans
 
@@ -115,9 +115,9 @@ There are many memory solutions available, including MCP (Model Context Protocol
 | **RAG Support** | ✅ Excellent | ✅ Excellent | ⚠️ Medium | ✅ Excellent |
 | **Token Efficiency** | ✅ Excellent | ✅ Excellent | ⚠️ Medium | ✅ Excellent |
 
-### When to Use agent-memory
+### When to Use agents-md
 
-**Choose agent-memory if you:**
+**Choose agents-md if you:**
 - Want full transparency and control over your memory
 - Prefer human-readable, editable files
 - Need easy backup and portability
@@ -134,7 +134,7 @@ There are many memory solutions available, including MCP (Model Context Protocol
 
 ### The Best of Both Worlds
 
-**agent-memory** doesn't prevent you from using other tools. You can:
+**agents-md** doesn't prevent you from using other tools. You can:
 - Use MCP tools for specific features while using markdown for general memory
 - Store sensitive data in encrypted databases while keeping patterns in markdown
 - Use cloud services for backup while maintaining local markdown as primary storage
@@ -150,14 +150,14 @@ First, clone this repository or set up the memory storage location:
 
 ```bash
 git clone <repository-url>
-cd agent-memory
+cd agents-md
 ```
 
 Or if you're setting up a new instance:
 
 ```bash
-mkdir -p ~/Documents/agent-memory
-cd ~/Documents/agent-memory
+mkdir -p ~/Documents/agents-md
+cd ~/Documents/agents-md
 ```
 
 **⚠️ Important**: Choose your memory directory name (e.g., `agent-memory`, `my-memory`, `ai-memory`) and configure it in `AGENTS.md` (see step 2 below).
@@ -204,13 +204,13 @@ The script will:
 
 ```bash
 # From your project root
-cp -r /path/to/agent-memory/_agents-md .
-cp /path/to/agent-memory/AGENTS.md ./AGENTS.md
+cp -r /path/to/agents-md/_agents-md .
+cp /path/to/agents-md/AGENTS.md ./AGENTS.md
 ```
 
-**Important**: If your project already has an `AGENTS.md` file, **append** the content from agent-memory's `AGENTS.md` to your existing file to avoid conflicts.
+**Important**: If your project already has an `AGENTS.md` file, **append** the content from agents-md's `AGENTS.md` to your existing file to avoid conflicts.
 
-**✅ Compatibility Note**: agent-memory is fully compatible with existing Cursor rules and user rules. The memory system rules will work alongside your existing `AGENTS.md` content.
+**✅ Compatibility Note**: agents-md is fully compatible with existing Cursor rules and user rules. The memory system rules will work alongside your existing `AGENTS.md` content.
 
 ### 4. Configure Memory Path in AGENTS.md
 
@@ -229,12 +229,12 @@ cp /path/to/agent-memory/AGENTS.md ./AGENTS.md
 
 ### 5. Add Memory Directory to Workspace (Cursor/VS Code)
 
-**IMPORTANT**: For Cursor (or VS Code-based editors) to access external memory files, you need to add the agent-memory directory to your project workspace.
+**IMPORTANT**: For Cursor (or VS Code-based editors) to access external memory files, you need to add your memory directory to your project workspace.
 
 **In Cursor/VS Code**:
 1. Open Command Palette (`Cmd+Shift+P` on macOS, `Ctrl+Shift+P` on Windows/Linux)
 2. Search for "Add Folder to Workspace" or "Workspaces: Add Folder to Workspace"
-3. Select your agent-memory directory
+3. Select your memory directory (the directory configured in `AGENTS.md`)
 
 Alternatively, you can add it via `.code-workspace` file or workspace settings.
 
@@ -306,7 +306,7 @@ Agents automatically:
 
 ### 🚀 Advanced RAG (Retrieval-Augmented Generation) Support
 
-**IMPORTANT**: agent-memory supports **advanced RAG capabilities** through intelligent semantic search and multi-level indexing. This is a powerful feature that significantly reduces token usage.
+**IMPORTANT**: agents-md supports **advanced RAG capabilities** through intelligent semantic search and multi-level indexing. This is a powerful feature that significantly reduces token usage.
 
 **⚠️ Model Requirement**: RAG support requires **agentic-capable models**. Not all AI models can intelligently handle memory retrieval - basic completion models may not perform semantic search or make intelligent decisions about what memories to load.
 
@@ -426,7 +426,7 @@ Update project memory with current status. Document recent changes, update index
 
 ## Platform Support
 
-agent-memory supports multiple platforms with platform-specific optimizations:
+agents-md supports multiple platforms with platform-specific optimizations:
 
 - **macOS**: Cloud storage detection, Spotlight search integration
 - **Linux**: Filesystem-specific optimizations, efficient search tools
@@ -473,6 +473,10 @@ MIT License - See [LICENSE](LICENSE) file for details.
 ## Contributing
 
 This is a personal project, but suggestions and improvements are welcome. Please ensure any contributions maintain the MIT license and attribution.
+
+## Acknowledgements
+
+This project was inspired by an earlier memory system design created and developed during work at [Rudel, inc.](https://rudel.jp). The foundational concepts and architectural patterns were refined and adapted for this open-source implementation.
 
 ## Author
 
