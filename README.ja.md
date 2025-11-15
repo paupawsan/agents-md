@@ -278,7 +278,7 @@ python3 setup_memory_dir.py
    - `agents-md`フォルダがワークスペースサイドバーに表示されます
 
 2. **AGENTS.mdが自動的に検出されます**:
-   - **Cursor Version: 2.0.77+** および **VSCode Version: 1.99.3+** は、サブフォルダ内の`AGENTS.md`ファイルを自動的に検出します
+   - 最近のバージョンのCursorは、ワークスペース内の`AGENTS.md`ファイルを自動的に検出します
    - `agents-md`フォルダ内の`AGENTS.md`ファイルがアクティブルールとして使用されます
    - `AGENTS.md`をプロジェクトルートにコピーする必要はありません
 
@@ -286,26 +286,11 @@ python3 setup_memory_dir.py
    - `_agents-md`フォルダをプロジェクトルートにコピーする必要があります、または
    - ワークスペースにも追加できます（`agents-md`フォルダからアクセス可能になります）
 
-**代替：サブフォルダ統合（ワークスペース不要）**
-
-ワークスペースを作成したくない場合は、プロジェクトのサブフォルダにagents-mdフォルダ全体をコピーできます：
-
-```bash
-# agents-mdをプロジェクトのサブフォルダとしてコピー
-cp -r /path/to/agents-md ./agents-md
-
-# またはgitサブモジュールとして追加（開発者におすすめ）
-git submodule add <repository-url> ./agents-md
-```
-
-**Cursor Version: 2.0.77+** および **VSCode Version: 1.99.3+** では、サブフォルダ内でも`AGENTS.md`が自動的に検出されるため、このアプローチがシームレスに動作します。
-
 **このアプローチの利点**:
 - ✅ 各プロジェクトに`AGENTS.md`をコピーする必要がない
 - ✅ 更新が簡単 - `agents-md`リポジトリの変更が自動的に適用される
 - ✅ よりクリーンなプロジェクト構造 - 重複ファイルがない
 - ✅ 同じセットアップを共有する複数のプロジェクトでうまく機能する
-- ✅ ワークスペース作成不要（サブフォルダ方法）
 
 #### オプションB: プロジェクトにファイルをコピー（従来の方法）
 
@@ -622,6 +607,7 @@ What are the known issues and their solutions?
 ## メモリシステムドキュメント
 
 - **メモリシステム**: メモリ固有のドキュメントについては`_agents-md/memory/`を参照
+  - **コマンド**: `_agents-md/memory/commands.md` - エージェント向けの安全なコマンド使用（重要）
   - **組織化**: `_agents-md/memory/organization.md` - メモリ管理ルール
   - **RAG**: `_agents-md/memory/rag.md` - RAG戦略とトークン最適化
   - **プラットフォーム**: `_agents-md/memory/platform.md` - プラットフォーム固有のパスとツール

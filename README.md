@@ -278,7 +278,7 @@ You have two options for setting up the memory system in your project:
    - The `agents-md` folder will appear in your workspace sidebar
 
 2. **AGENTS.md is automatically detected**:
-   - **Cursor Version: 2.0.77+** and **VSCode Version: 1.99.3+** automatically detect `AGENTS.md` files in subfolders
+   - Recent versions of Cursor automatically detect `AGENTS.md` files in the workspace
    - The `AGENTS.md` file in the `agents-md` folder will be used as active rules
    - No need to copy `AGENTS.md` to your project root
 
@@ -286,26 +286,11 @@ You have two options for setting up the memory system in your project:
    - You still need to copy the `_agents-md` folder to your project root, OR
    - Add it to your workspace as well (it will be accessible from the `agents-md` folder)
 
-**Alternative: Subfolder Integration (No Workspace Required)**
-
-If you don't want to create a workspace, you can copy the entire `agents-md` folder into a subfolder of your project:
-
-```bash
-# Copy agents-md into your project as a subfolder
-cp -r /path/to/agents-md ./agents-md
-
-# Or add as git submodule (recommended for developers)
-git submodule add <repository-url> ./agents-md
-```
-
-With recent versions of Cursor/VS Code, `AGENTS.md` will be automatically detected even in subfolders, making this approach work seamlessly.
-
 **Benefits of this approach**:
 - ✅ No need to copy `AGENTS.md` to each project
 - ✅ Easy to update - changes in `agents-md` repository apply automatically
 - ✅ Cleaner project structure - no duplicate files
 - ✅ Works great with multiple projects sharing the same setup
-- ✅ No workspace creation required (subfolder method)
 
 #### Option B: Copy Files to Project (Traditional Method)
 
@@ -532,6 +517,44 @@ Agents automatically:
 
 **Note**: Cursor agents will automatically sync memory during conversations. Manual sync is typically not needed, but prompts are provided below if you want to trigger it manually.
 
+### ⚠️ Agent Command Permissions
+
+**IMPORTANT**: The memory system requires agents to execute file system commands to create, read, and write memory files. This is **beyond the capabilities of the simple markdown-based system** and requires explicit permission from your editor.
+
+#### Commands Agents May Execute
+
+Agents may execute the following types of commands (these are safe file operations):
+- **File/Folder Creation**: `mkdir`, `touch` - Creating memory directories and files
+- **File Reading**: `cat`, `head`, `grep` - Reading memory files and searching content
+- **File Writing**: `echo`, `printf` - Writing memory content to files
+- **File Operations**: `cp`, `mv`, `ls` - Organizing and managing memory files
+
+#### Permission Requirements
+
+**You must whitelist these commands** in your editor or system:
+
+**Cursor**:
+- Go to Settings → Agent → Command Execution
+- Add the above commands to your allowed commands list
+- Or grant permission when prompted during agent operations
+
+**VS Code**:
+- Similar settings in VS Code extensions that support command execution
+- Check your AI assistant extension settings
+
+**Antivirus/Security Software**:
+- Some antivirus programs may block these operations
+- Add exceptions for your project folder and memory directory
+- Allow file system operations from your editor
+
+#### Why This Is Required
+
+- **Security**: Editors prevent arbitrary command execution for safety
+- **File Access**: Memory files are stored outside the project workspace
+- **System Integration**: Required for the memory system to function properly
+
+**Note**: These commands are **safe file operations only** - they cannot execute harmful code, install software, or access the internet. The memory system only creates, reads, and writes text files.
+
 ### 🚀 Advanced RAG (Retrieval-Augmented Generation) Support
 
 **IMPORTANT**: agents-md supports **advanced RAG capabilities** through intelligent semantic search and multi-level indexing. This is a powerful feature that significantly reduces token usage.
@@ -622,6 +645,7 @@ All these prompts will trigger the agent to intelligently search memory files us
 ## Memory System Documentation
 
 - **Memory System**: See `_agents-md/memory/` for memory-specific documentation
+  - **Commands**: `_agents-md/memory/commands.md` - Safe command usage for agents (CRITICAL)
   - **Organization**: `_agents-md/memory/organization.md` - Memory management rules
   - **RAG**: `_agents-md/memory/rag.md` - RAG strategies and token optimization
   - **Platform**: `_agents-md/memory/platform.md` - Platform-specific paths and tools

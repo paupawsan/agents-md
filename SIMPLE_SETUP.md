@@ -315,3 +315,46 @@ Once set up, you can:
 
 **Remember**: The memory system is designed to work automatically. You don't need to do anything special - just use your AI assistant normally!
 
+---
+
+## ⚠️ Important: Agent Permissions
+
+**Before the memory system works**, you need to give your AI assistant permission to execute file commands.
+
+### What Commands Are Needed?
+
+The AI assistant needs to run safe commands to create and manage memory files:
+- `mkdir` - Create folders for memory
+- `touch` - Create files
+- `cat`, `head`, `grep` - Read memory files
+- `echo`, `printf` - Write to memory files
+- `cp`, `mv`, `ls` - Organize memory files
+
+### How to Grant Permissions
+
+**In Cursor**:
+1. Go to Settings (gear icon)
+2. Find "Agent" or "AI" settings
+3. Look for "Command Execution" or similar
+4. Add the commands above to allowed commands
+5. Or click "Allow" when the AI asks for permission
+
+**In VS Code**:
+- Check your AI assistant extension settings
+- Look for command execution permissions
+
+**Antivirus Software**:
+- Some antivirus programs block these operations
+- Add your project folder as an exception
+- Allow file operations from your editor
+
+### Why Is This Needed?
+
+- **Security**: Editors prevent running commands to keep you safe
+- **File Access**: Memory files are stored outside your project
+- **Safe Operations**: These commands only work with files - they can't install software or access the internet
+
+**Don't worry**: These are just file operations. The AI can't run dangerous commands - only safe file reading/writing.
+
+---
+

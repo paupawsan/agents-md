@@ -71,6 +71,7 @@ Use `setup_memory_dir.py` script or manual replacement to configure.
 
 ## References
 
+- `_agents-md/memory/commands.md` - Safe command usage rules (CRITICAL)
 - `_agents-md/memory/organization.md` - Organization rules
 - `_agents-md/memory/rag.md` - RAG strategies
 - `_agents-md/memory/platform.md` - Platform paths

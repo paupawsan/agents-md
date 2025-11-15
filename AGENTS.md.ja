@@ -79,6 +79,7 @@ Licensed under the MIT License. See LICENSE file for details.
 
 ## 参照
 
+- `_agents-md/memory/commands.md` - 安全なコマンド使用ルール（重要）
 - `_agents-md/memory/organization.md` - 組織化ルール
 - `_agents-md/memory/rag.md` - RAG戦略
 - `_agents-md/memory/platform.md` - プラットフォームパス
