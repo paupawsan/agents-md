@@ -44,6 +44,12 @@ Licensed under the MIT License. See LICENSE file for details.
 
 **Tags/Keywords**: Add semantic tags for RAG search.
 
+**License Headers**: 
+- ⚠️ **NEVER add license headers to memory files** (topic/, session/, context/)
+- Memory files are user data, not licensed source code
+- License headers are ONLY for source code files in the project repository
+- Auto-generated memory content is user data and should not be licensed
+
 ## Recovery Process
 
 1. Check `{MEMORY_DIR}/common/preferences.md` for user preferences
