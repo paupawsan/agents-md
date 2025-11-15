@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 """
 Language switcher for AGENTS.md
-Switches between English (AGENTS.md) and Japanese (AGENTS.md.ja) versions.
+Switches between English (AGENTS.md.en) and Japanese (AGENTS.md.ja) versions.
+
+The script automatically preserves configured {MEMORY_PATH} when switching languages.
+If {MEMORY_PATH} cannot be detected, you'll need to run setup_memory_dir.py after switching.
 
 Usage:
     python3 switch_agents_lang.py en    # Switch to English
@@ -37,6 +40,39 @@ def get_current_language():
     
     return 'unknown'
 
+def extract_memory_path(content):
+    """Extract configured MEMORY_PATH from content if it exists."""
+    import re
+    
+    # If placeholder still exists, it's not configured
+    if '{MEMORY_PATH}' in content:
+        return None
+    
+    # Look for configured paths in common patterns
+    # Pattern 1: Lines like "Root: /path/to/memory" or "Root: `{MEMORY_PATH}`"
+    # Pattern 2: Lines with memory path references
+    lines = content.split('\n')
+    for line in lines:
+        # Look for lines mentioning memory path
+        if 'MEMORY_PATH' in line or ('memory' in line.lower() and ('root' in line.lower() or 'path' in line.lower())):
+            # Try to extract absolute path (starts with / or ~ or drive letter)
+            # Match paths that don't contain {MEMORY_PATH} placeholder
+            patterns = [
+                r'Root:\s*[`"]?([~/]?[/\\][^\s`"\)]+memory[^\s`"\)]*)',  # Root: /path/to/memory
+                r'`([~/]?[/\\][^\s`]+memory[^\s`]+)`',  # `/path/to/memory`
+                r'([~/]?[/\\][^\s\)]+memory[^\s\)]+)',  # /path/to/memory
+            ]
+            for pattern in patterns:
+                matches = re.findall(pattern, line, re.IGNORECASE)
+                for match in matches:
+                    if match and '{MEMORY_PATH}' not in match:
+                        # Clean up the path
+                        path = match.strip('`"\'')
+                        if path and ('/' in path or '\\' in path or path.startswith('~')):
+                            return path
+    
+    return None
+
 def switch_to_language(target_lang):
     """Switch AGENTS.md to the specified language."""
     if target_lang not in ['en', 'ja']:
@@ -52,21 +88,54 @@ def switch_to_language(target_lang):
         print(f"  Expected: {source_file}")
         return False
     
-    # Backup current AGENTS.md if it exists and is different
+    # Extract configured MEMORY_PATH from current AGENTS.md if it exists
+    configured_path = None
     if os.path.exists(target_file):
-        current_lang = get_current_language()
-        if current_lang and current_lang != target_lang:
-            print(f"Backing up current {target_file} (detected: {current_lang})...")
-            shutil.copy2(target_file, AGENTS_BACKUP)
+        try:
+            with open(target_file, 'r', encoding='utf-8') as f:
+                current_content = f.read()
+            configured_path = extract_memory_path(current_content)
+            
+            current_lang = get_current_language()
+            if current_lang and current_lang != target_lang:
+                print(f"Backing up current {target_file} (detected: {current_lang})...")
+                shutil.copy2(target_file, AGENTS_BACKUP)
+        except Exception as e:
+            print(f"Warning: Could not read current {target_file}: {e}")
     
-    # Copy source to target
-    print(f"Switching to {target_lang.upper()}...")
-    shutil.copy2(source_file, target_file)
+    # Read source template
+    with open(source_file, 'r', encoding='utf-8') as f:
+        new_content = f.read()
+    
+    # If we have a configured path, replace the placeholder in the new template
+    if configured_path:
+        placeholder_count = new_content.count('{MEMORY_PATH}')
+        if placeholder_count > 0:
+            new_content = new_content.replace('{MEMORY_PATH}', configured_path)
+            print(f"Switching to {target_lang.upper()}...")
+            print(f"✓ Preserved configured MEMORY_PATH: {configured_path}")
+            print(f"  Replaced {placeholder_count} placeholder(s)")
+        else:
+            print(f"Switching to {target_lang.upper()}...")
+            print(f"  Note: No {{MEMORY_PATH}} placeholder found in template")
+    else:
+        print(f"Switching to {target_lang.upper()}...")
+        print(f"  Note: {{MEMORY_PATH}} placeholder found - you'll need to configure it")
+        print(f"  Run: python3 setup_memory_dir.py")
+    
+    # Write new content
+    with open(target_file, 'w', encoding='utf-8') as f:
+        f.write(new_content)
     
     print(f"✓ Successfully switched to {target_lang.upper()}")
     print(f"  Current file: {target_file}")
     if os.path.exists(AGENTS_BACKUP):
         print(f"  Backup saved: {AGENTS_BACKUP}")
+    
+    if not configured_path:
+        print(f"\n⚠️  Important: Remember to configure MEMORY_PATH!")
+        print(f"  Run: python3 setup_memory_dir.py")
+    
     return True
 
 def main():

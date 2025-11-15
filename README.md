@@ -326,6 +326,15 @@ python3 switch_agents_lang.py
 
 The script maintains separate source files (`AGENTS.md.en` and `AGENTS.md.ja`) and copies the appropriate one to `AGENTS.md` based on your selection.
 
+**⚠️ Important**: After switching languages, the script will attempt to preserve your configured `{MEMORY_PATH}` automatically. However, if the script cannot detect your configured path, you'll need to run `setup_memory_dir.py` again to configure the memory path in the new language template:
+
+```bash
+# After switching language, if MEMORY_PATH needs configuration:
+python3 setup_memory_dir.py
+```
+
+The script will warn you if `{MEMORY_PATH}` still needs to be configured.
+
 #### Option B: Manual Setup (Simple Alternative)
 
 If you prefer manual setup or don't want to use the script, you can manually clone and rename the template files:
@@ -344,9 +353,12 @@ cp AGENTS.md.ja AGENTS.md
 
 **Note**: The idea is to keep a single `AGENTS.md` file in your project root. The `AGENTS.md.en` and `AGENTS.md.ja` files serve as templates that you clone and rename to `AGENTS.md` based on your language preference.
 
-**Important**: After manually copying, make sure to:
-1. Replace `{MEMORY_DIR}` placeholder in the copied `AGENTS.md` (if not already done)
-2. Configure the memory path in `AGENTS.md` (see step 4)
+**⚠️ Important**: After manually copying, you **must** configure the memory path:
+1. Run `setup_memory_dir.py` to configure `{MEMORY_PATH}`:
+   ```bash
+   python3 setup_memory_dir.py
+   ```
+   OR manually replace `{MEMORY_PATH}` placeholder in the copied `AGENTS.md` with your full memory root path (see step 4)
 
 **Note**: Language switching only affects `AGENTS.md`. Documentation files (like `README.md`) have separate Japanese versions (e.g., `README.ja.md`) that don't affect agent functionality.
 
