@@ -48,6 +48,15 @@ Use `setup_memory_dir.py` script or manual replacement to configure.
 
 **Evaluation**: Privacy check → Value → Verification → Relevance → Consolidation → Organization.
 
+## License Headers in Memory Files
+
+**CRITICAL**: Memory files are user data, NOT licensed source code.
+
+- ⚠️ **NEVER add license headers to memory files** (topic/, session/, context/)
+- Memory files are user-generated content and auto-generated memory
+- License headers are ONLY for source code files in the project repository
+- When creating or updating memory files, do NOT include copyright/license notices
+
 ## RAG Strategy
 
 **Multi-level retrieval**:
