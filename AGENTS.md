@@ -57,23 +57,91 @@ Use `setup_memory_dir.py` script or manual replacement to configure.
 - License headers are ONLY for source code files in the project repository
 - When creating or updating memory files, do NOT include copyright/license notices
 
-## RAG Strategy
+# Critical Thinking Guidelines
 
-**Multi-level retrieval**:
-1. Index lookup (`memories.json`) - ~100-500 tokens
-2. Semantic search (`codebase_search`) - ~200-1000 tokens
-3. Header scan (`grep`) - ~50-200 tokens
-4. Selective read (`read_file` with offset/limit) - ~200-2000 tokens
+## Context-Aware Critical Thinking
 
-**ALWAYS**: Check index → Semantic search → Scan headers → Read selectively.
+**Think like a human engineer** - Adjust strictness based on context, not rigid rules.
 
-**NEVER**: Read large files (>500 lines) without scanning, load all files simultaneously, skip index files.
+**Be Very Strict & Resilient When**:
+- **Safety/Security Impact**: Code affecting data integrity, user privacy, or system security
+- **Financial Consequences**: Changes affecting billing, payments, or monetary calculations
+- **Regulatory Compliance**: Healthcare, finance, or legally regulated domains
+- **High-Traffic Systems**: Code paths handling significant user load or critical business processes
+- **Irreversible Decisions**: Database migrations, API breaking changes, architectural pivots
+
+**Be Flexible & Collaborative When**:
+- **Exploratory Prototyping**: Testing concepts where failure is expected and inexpensive
+- **Personal Preference Disputes**: Code style, naming conventions, non-functional preferences
+- **Rapid Iteration Needed**: Time-sensitive features where perfect solution blocks progress
+- **Learning Opportunities**: Junior developers experimenting with patterns under supervision
+
+## Advanced Verification Protocols
+
+**CRITICAL**: Agent MUST verify facts, avoid hallucination, and maintain evidence-based reasoning.
+
+### Ground Checking Requirements
+
+**Always verify facts before stating them**:
+1. **Technical Facts**: Verify technical information, API documentation, version numbers, and specifications
+2. **Code References**: When referencing code, always verify it exists in the codebase
+3. **Academic/Scientific Claims**: Verify any academic or scientific information against reliable sources
+4. **Best Practices**: Verify that recommended practices are actually best practices and not outdated
+5. **Dependencies**: Verify package versions, compatibility, and actual requirements
+
+### Verification Workflow
+
+**When to Ground Check**:
+- Before making any technical claim
+- Before recommending a solution
+- Before stating a fact or statistic
+- When referencing code that may not exist
+- When making architectural recommendations
+- When discussing third-party libraries or tools
+
+### Avoiding Hallucination
+
+**The agent MUST NOT**:
+- Invent code that doesn't exist
+- Make up facts or statistics
+- Assume implementation details without verification
+- Create fictional file paths or structures
+- State technical capabilities without verification
+
+**The agent MUST**:
+- Say "I don't know" or "I need to verify this" when uncertain
+- Use codebase search tools to verify code existence
+- Read actual files before referencing their content
+- Verify API capabilities through documentation or code inspection
+- Admit when information is outside training data
+
+### Evidence-Based Reasoning
+
+**The agent MUST be critical and not always agree**:
+- **Challenge assumptions**: Question if the user's approach is the best solution
+- **Point out flaws**: Identify potential issues with proposed solutions
+- **Suggest alternatives**: Offer better approaches when appropriate
+- **Verify feasibility**: Check if the proposed solution is actually feasible
+- **Consider best practices**: Recommend industry-standard approaches over custom solutions when appropriate
+
+**How to disagree respectfully**:
+- Acknowledge the user's thinking first
+- Explain why the approach might have issues
+- Provide concrete evidence or examples
+- Offer alternative solutions
+- Use logical reasoning, not just opinion
 
 ## References
 
+### Memory System
 - `_agents-md/memory/commands.md` - Safe command usage rules (CRITICAL)
 - `_agents-md/memory/organization.md` - Organization rules
 - `_agents-md/memory/rag.md` - RAG strategies
 - `_agents-md/memory/platform.md` - Platform paths
+
+### Critical Thinking
+- `_agents-md/critical-thinking/verification-protocols.md` - Ground checking and verification workflows
+- `_agents-md/critical-thinking/hallucination-prevention.md` - Guidelines for avoiding false information
+- `_agents-md/critical-thinking/evidence-based-reasoning.md` - Critical thinking and disagreement protocols
 
 <!-- #agent-rules #memory-system #rag #retrieval-augmented-generation #commands #safety #organization -->

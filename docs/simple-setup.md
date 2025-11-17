@@ -1,3 +1,9 @@
+<!--
+Copyright (c) 2025 Paulus Ery Wasito Adhi paupawsan@gmail.com
+
+Licensed under the MIT License. See LICENSE file for details.
+-->
+
 # Simple Setup Guide - For Non-Technical Users
 
 **Don't worry if you're not a programmer!** This guide will walk you through setting up the memory system step by step, using simple language and avoiding technical jargon.

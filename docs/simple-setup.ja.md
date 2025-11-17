@@ -1,3 +1,9 @@
+<!--
+Copyright (c) 2025 Paulus Ery Wasito Adhi paupawsan@gmail.com
+
+Licensed under the MIT License. See LICENSE file for details.
+-->
+
 # シンプルセットアップガイド - 技術者以外の方へ
 
 **プログラマーでなくても心配いりません！** このガイドでは、専門用語を避け、平易な言葉でメモリシステムのセットアップをステップバイステップで説明します。

@@ -16,6 +16,11 @@ This directory contains comprehensive documentation for the agent-memory system.
 - **[rag-guide.md](rag-guide.md)** - RAG (Retrieval-Augmented Generation) strategies and token optimization techniques
 - **[platform-support.md](platform-support.md)** - Platform-specific optimizations and tool recommendations
 
+## Testing Documentation
+
+- **[Testing Strategy](../../docs/memory-system-testing/testing-strategy.md)** - Comprehensive testing approaches for memory system validation
+- **[Practical Testing](../../docs/memory-system-testing/practical-testing.md)** - Hands-on test scenarios and validation procedures
+
 ## Quick Start
 
 1. **CRITICAL: Read [commands.md](commands.md)** for safe command usage rules
@@ -23,6 +28,7 @@ This directory contains comprehensive documentation for the agent-memory system.
 3. **Read [organization.md](organization.md)** for memory management rules
 4. **Read [rag-guide.md](rag-guide.md)** for efficient memory retrieval
 5. **Read [platform-support.md](platform-support.md)** for platform-specific setup
+6. **Read testing docs** for validation procedures and quality assurance
 
 ## Key Concepts
 
@@ -50,6 +56,7 @@ When implementing memory operations:
 3. Adhere to organization rules in [organization.md](organization.md)
 4. Use RAG strategies from [rag-guide.md](rag-guide.md)
 5. Implement platform detection from [platform-support.md](platform-support.md)
+6. **Use testing strategies** from the testing documentation for validation
 
 ## For Users
 
