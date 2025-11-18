@@ -53,17 +53,17 @@ Licensed under the MIT License. See LICENSE file for details.
 
 #### メモリ初期化
 ```
-Initialize memory for this project. Create the memory structure in the configured memory directory, including index files and initial knowledge files documenting the project architecture and patterns.
+このプロジェクトのメモリを初期化してください。設定されたメモリディレクトリにメモリ構造を作成し、プロジェクトアーキテクチャとパターンを文書化するインデックスファイルと初期ナレッジファイルを含めてください。
 ```
 
 #### 手動メモリ同期
 ```
-Sync memory for this project. Update index files, consolidate recent sessions if needed, and ensure index.json is synchronized with actual files in knowledge/ and sessions/ directories.
+このプロジェクトのメモリを同期してください。インデックスファイルを更新し、必要に応じて最近のセッションを統合し、index.jsonがknowledge/とsessions/ディレクトリの実際のファイルと同期されていることを確認してください。
 ```
 
 #### メモリ更新
 ```
-Update project memory with current status. Document recent changes, update index files, and sync any new patterns or architectural decisions.
+現在のステータスでプロジェクトメモリを更新してください。最近の変更を文書化し、インデックスファイルを更新し、新しいパターンやアーキテクチャ決定を同期してください。
 ```
 
 ## RAG（検索拡張生成）機能
@@ -88,53 +88,53 @@ Update project memory with current status. Document recent changes, update index
 
 ### トピックとパターンの取得
 ```
-What topics are documented in memory for this project?
-Show me all the patterns we've established for this project.
-What are the documented topics in the knowledge/ directory?
-List all architectural patterns we've documented.
+このプロジェクトのメモリにどのようなトピックが文書化されていますか？
+このプロジェクトで確立したすべてのパターンを見せてください。
+knowledge/ディレクトリに文書化されているトピックは何ですか？
+文書化したすべてのアーキテクチャパターンをリストアップしてください。
 ```
 
 ### 特定の情報の検索
 ```
-What did we decide about error handling in this project?
-Check memory for how we handle authentication.
-What patterns exist for API integration?
-Find previous solutions to similar problems.
+このプロジェクトでエラーハンドリングについて何を決定しましたか？
+認証の処理方法についてメモリを確認してください。
+API統合のためのパターンは何がありますか？
+類似の問題に対する以前の解決策を見つけてください。
 ```
 
 ### ユーザー設定の確認
 ```
-What are my preferences for this project?
-Check common preferences that apply to all projects.
-What project-specific preferences are set?
+このプロジェクトの私の設定は何ですか？
+すべてのプロジェクトに適用される共通設定を確認してください。
+プロジェクト固有の設定は何が設定されていますか？
 ```
 
 ### アーキテクチャ決定の確認
 ```
-What architectural decisions were made for this project?
-Show me the architecture documentation from memory.
-What design patterns are we using?
+このプロジェクトでどのようなアーキテクチャ決定が行われましたか？
+メモリからアーキテクチャドキュメントを見せてください。
+どのデザインパターンを使用していますか？
 ```
 
 ### セッションサマリの検索
 ```
-What work was done in recent sessions?
-Show me the last few session summaries.
-What was completed in the last week?
+最近のセッションでどのような作業が行われましたか？
+最後のいくつかのセッションサマリを見せてください。
+先週何が完了しましたか？
 ```
 
 ### プロジェクトステータスの確認
 ```
-What's the current status of this project?
-Show me recent fixes and updates.
-What are the known issues and their solutions?
+このプロジェクトの現在のステータスは何ですか？
+最近の修正と更新を見せてください。
+既知の問題とその解決策は何ですか？
 ```
 
 ### 新しいパターンの学習
 ```
-Remember this pattern: [パターンを説明]
-Document this architectural decision: [決定を説明]
-Add this to project knowledge: [知識を説明]
+このパターンを覚えてください：[パターンを説明]
+このアーキテクチャ決定を文書化してください：[決定を説明]
+これをプロジェクト知識に追加してください：[知識を説明]
 ```
 
 ## メモリファイルタイプ
