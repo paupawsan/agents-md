@@ -4,9 +4,9 @@ Copyright (c) 2025 Paulus Ery Wasito Adhi paupawsan@gmail.com
 Licensed under the MIT License. See LICENSE file for details.
 -->
 
-# Memory System Usage Guide
+# Usage Guide
 
-This guide explains how to effectively use the agents-md memory system in your development workflow. The memory system provides intelligent, RAG-optimized knowledge management for AI coding agents.
+This guide explains how to effectively use the agents-md systems in your development workflow. It covers both the Memory System and Critical Thinking framework.
 
 ## Memory Structure
 
@@ -15,28 +15,31 @@ The memory system organizes information into three categories:
 ### 1. Project-Specific Memory (`{MEMORY_DIR}/[project-name]/`)
 - **Purpose**: Knowledge specific to your current project
 - **Contents**:
-  - Project architecture decisions
-  - Project-specific patterns and fixes
-  - Project file locations
-  - Project-specific preferences
+  - Project architecture decisions → `context.md`
+  - Project-specific patterns and fixes → `topic/topic_name.md`
+  - Work sessions → `session/YYYY-MM/YYYY-MM-DD_feature.md`
+  - Project-specific preferences → `topic/preferences.md`
+  - Index file → `memories.json`
 - **Access**: Automatically used when working on this project
 
 ### 2. Common Memory (`{MEMORY_DIR}/common/`)
 - **Purpose**: User preferences and cross-project patterns
 - **Contents**:
-  - User preferences (apply to all projects)
+  - User preferences (apply to all projects) → `preferences.md`
+  - Cross-project patterns → `patterns.md`
   - Global settings and configurations
-  - Cross-project patterns
   - User workflows
 - **Access**: Available across all projects
 
 ### 3. Private Memory (`{MEMORY_DIR}/private/`) ⚠️
 - **Purpose**: Sensitive information storage
 - **Contents**:
+  - Credentials → `credentials.md`
+  - Personal information → `personal_info.md`
   - API keys, passwords, tokens
-  - Personal information
   - Sensitive settings
 - **⚠️ Important**: Never commit private memory files to version control
+- **⚠️ Security**: Only accessed when explicitly needed, sensitive data is masked in responses
 
 ## How Agents Use Memory
 
@@ -58,7 +61,7 @@ Initialize memory for this project. Create the memory structure in the configure
 
 #### Manual Memory Sync
 ```
-Sync memory for this project. Update index files, consolidate recent sessions if needed, and ensure index.json is synchronized with actual files in knowledge/ and sessions/ directories.
+Sync memory for this project. Update index files, consolidate recent sessions if needed, and ensure memories.json is synchronized with actual files in topic/ and session/ directories.
 ```
 
 #### Memory Update
@@ -70,16 +73,42 @@ Update project memory with current status. Document recent changes, update index
 
 The memory system uses advanced RAG capabilities for intelligent information retrieval:
 
-### How RAG Works
-- **Multi-level indexing**: Index-first lookup for instant access
-- **Semantic search**: Natural language queries to find relevant memories
-- **Selective reading**: Only relevant sections are loaded into context
-- **Token optimization**: 80-95% token reduction compared to loading entire files
+### Multi-Level RAG Strategy
+
+1. **Index Lookup** (~100-500 tokens)
+   - Check `memories.json` for tags/keywords
+   - Fastest, lowest cost method
+
+2. **Semantic Search** (~200-1000 tokens)
+   - Use semantic search on memory directory
+   - Natural language queries
+
+3. **Header Scan** (~50-200 tokens)
+   - Scan file headers to identify relevant sections
+   - Locate specific topics quickly
+
+4. **Selective Read** (~200-2000 tokens)
+   - Read only identified sections with offset/limit
+   - Avoid loading entire large files
+
+### Token Optimization
+
+**Always**:
+- Check index (`memories.json`) before searching
+- Use semantic search before reading files
+- Scan headers before reading content
+- Read selectively with offset/limit
+
+**Never**:
+- Read entire large files (>500 lines) without scanning
+- Load all memory files simultaneously
+- Skip index files
 
 ### Benefits
-- ✅ **Reduced Token Usage**: Only relevant memories are loaded into context
+- ✅ **80-95% Token Reduction**: Index-first approach vs full search
+- ✅ **70-90% Reduction**: Selective reading vs full file
+- ✅ **50-70% Reduction**: Header navigation vs full file
 - ✅ **Intelligent Retrieval**: Agents understand context and retrieve related information automatically
-- ✅ **Fast Access**: Multi-level indexing enables instant lookup
 - ✅ **Scalable**: Handles large memory databases efficiently
 
 ## Prompt Examples
@@ -90,7 +119,7 @@ Here are practical examples of prompts you can use to interact with the memory s
 ```
 What topics are documented in memory for this project?
 Show me all the patterns we've established for this project.
-What are the documented topics in the knowledge/ directory?
+What are the documented topics in the topic/ directory?
 List all architectural patterns we've documented.
 ```
 
@@ -139,20 +168,23 @@ Add this to project knowledge: [describe knowledge]
 
 ## Memory File Types
 
-### Knowledge Files (`knowledge/topic_name.md`)
+### Topic Files (`topic/topic_name.md`)
 - **Purpose**: Ongoing documentation of patterns and architecture
 - **Structure**: Markdown files with semantic tags and keywords
 - **Usage**: Long-term knowledge that evolves over time
+- **Location**: `{MEMORY_DIR}/[project-name]/topic/` or `{MEMORY_DIR}/common/patterns.md`
 
-### Session Archives (`sessions/YYYY-MM/YYYY-MM-DD_summary.md`)
+### Session Archives (`session/YYYY-MM/YYYY-MM-DD_feature.md`)
 - **Purpose**: Consolidated work sessions organized by time
 - **Structure**: Date-organized summaries of completed work
 - **Usage**: Historical reference for what was done when
+- **Location**: `{MEMORY_DIR}/[project-name]/session/YYYY-MM/`
 
-### Index Files (`index.json`, `index.md`)
+### Index Files (`memories.json`, `context.md`)
 - **Purpose**: Fast lookup and quick reference
-- **Structure**: Machine-readable and human-readable indexes
+- **Structure**: Machine-readable JSON index and human-readable context
 - **Usage**: Instant access to memory metadata
+- **Location**: `{MEMORY_DIR}/[project-name]/memories.json` and `context.md`
 
 ## Workflow Options
 
@@ -269,12 +301,84 @@ The memory system includes platform-specific optimizations:
 - **Knowledge Sharing**: Export memory for team sharing
 - **Backup**: Regular backup strategies for memory directories
 
+## Critical Thinking System Usage
+
+The Critical Thinking framework works automatically alongside the Memory System to provide intelligent, context-aware decision-making.
+
+### How It Works
+
+The Critical Thinking system automatically:
+- **Assesses risk** based on context (security-critical vs prototyping)
+- **Verifies facts** before making claims or recommendations
+- **Challenges assumptions** when appropriate
+- **Adapts communication style** based on audience (expert vs non-technical)
+
+### When It Activates
+
+**High-Risk Scenarios** (Maximum Verification):
+- Banking/financial applications
+- Healthcare systems
+- Production database changes
+- Security-critical code
+- Payment processing
+
+**Low-Risk Scenarios** (Flexible Approach):
+- Quick prototypes
+- Debugging sessions
+- Documentation updates
+- Experimental features
+- Personal projects
+
+### Using Critical Thinking
+
+The system works automatically, but you can guide it:
+
+**Request Verification**:
+```
+Verify this approach before implementing
+Check if this library is still maintained
+Confirm this is the best practice for our use case
+```
+
+**Request Multi-Perspective Analysis**:
+```
+Consider this from multiple angles: user experience, performance, and maintainability
+What are the trade-offs of this approach?
+Help me think through the implications
+```
+
+**Request Evidence-Based Reasoning**:
+```
+What evidence supports this decision?
+Are there alternatives we should consider?
+Challenge my assumptions about this approach
+```
+
+### Integration with Memory
+
+Critical Thinking uses Memory System patterns:
+- References stored architectural decisions
+- Considers documented preferences
+- Learns from past decisions
+- Applies project-specific patterns
+
+**Example**:
+```
+Should we use TypeScript or JavaScript for this feature?
+```
+The agent will:
+1. Check memory for project patterns/preferences
+2. Consider the context (prototype vs production)
+3. Provide evidence-based recommendation
+4. Reference any stored decisions about TypeScript usage
+
 ## Getting Help
 
 If you encounter issues:
 1. Check the [Setup Guide](setup-guide.md) for configuration issues
 2. Review [Memory System Testing](memory-system-testing/) for validation procedures
-3. Check the detailed documentation in `_agents-md/memory/`
-4. Verify your AI model supports the required capabilities
+3. Review [Critical Thinking Testing](critical-thinking-testing/) for validation procedures
+4. Check the detailed documentation in `_agents-md/memory/` and `_agents-md/critical-thinking/`
+5. Verify your AI model supports the required capabilities
 
-The memory system is designed to enhance your development workflow by providing intelligent, context-aware knowledge management that adapts to your working style and project needs.
+The agents-md systems are designed to enhance your development workflow by providing intelligent, context-aware knowledge management and decision-making that adapts to your working style and project needs.
