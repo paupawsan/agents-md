@@ -6,6 +6,26 @@ Licensed under the MIT License. See LICENSE file for details.
 
 # ⚠️ CRITICAL: DO NOT AUTO-CREATE OR COPY AGENTS-MD STRUCTURE
 
+## Workspace Check (MANDATORY FIRST)
+
+**BEFORE doing ANYTHING, check workspace context**:
+
+1. **Is agents-md visible in workspace?** (e.g., as external folder, subfolder, or in workspace root)
+   - ✅ **YES** → This is the agents-md repository itself. DO NOT copy or reconstruct anything.
+   - ✅ **YES** → If `_agents-md/` directory exists in workspace, this IS the agents-md project.
+   - ✅ **YES** → If `AGENTS.md` exists alongside `README.md` and `setup_memory_dir.py`, this IS the agents-md project.
+
+2. **Is this file (`AGENTS.md`) in the agents-md repository?**
+   - ✅ **YES** → This is a TEMPLATE. DO NOT copy it or its structure to other projects.
+   - ✅ **YES** → DO NOT create `_agents-md/` directories in the main project workspace.
+
+**IF agents-md is in workspace (external folder or otherwise)**:
+- ❌ **DO NOT** copy `_agents-md/` to main project
+- ❌ **DO NOT** copy `AGENTS.md` to main project  
+- ❌ **DO NOT** reconstruct any agents-md structure
+- ❌ **DO NOT** create memory system files automatically
+- ✅ **ONLY** use the systems AFTER user explicitly configures and requests usage
+
 **AGENTS MUST NOT**:
 - ❌ Automatically create, copy, or reconstruct ANY part of the agents-md project structure
 - ❌ Copy `_agents-md/` directory structure to other projects
