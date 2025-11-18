@@ -153,14 +153,14 @@ python3 switch_agents_lang.py
 
 スクリプトは個別のソースファイル（`AGENTS.md.en` および `AGENTS.md.ja`）を維持し、選択に基づいて適切なものを `AGENTS.md` にコピーします。
 
-**⚠️ 重要**: 言語を切り替えた後、スクリプトは構成された `{MEMORY_PATH}` を自動的に維持しようとします。ただし、スクリプトが構成されたパスを検出できない場合、新しい言語テンプレートでメモリパスを構成するために `setup_memory_dir.py` を再度実行する必要があります：
+**⚠️ 重要**: 言語を切り替えた後、スクリプトは構成された `MEMORY_PATH` を自動的に維持しようとします。ただし、スクリプトが構成されたパスを検出できない場合、新しい言語テンプレートでメモリパスを構成するために `setup_memory_dir.py` を再度実行する必要があります：
 
 ```bash
 # 言語切り替え後にMEMORY_PATHを構成する必要がある場合：
 python3 setup_memory_dir.py
 ```
 
-スクリプトは `{MEMORY_PATH}` をまだ構成する必要がある場合に警告します。
+スクリプトは `MEMORY_PATH` をまだ構成する必要がある場合に警告します。
 
 ### 方法B: 手動設定 (シンプルな代替)
 
@@ -181,28 +181,40 @@ cp AGENTS.md.ja AGENTS.md
 **注意**: プロジェクトルートに単一の `AGENTS.md` ファイルを維持することを想定しています。`AGENTS.md.en` と `AGENTS.md.ja` ファイルは、言語設定に基づいて `AGENTS.md` にクローンして名前変更するテンプレートとして機能します。
 
 **⚠️ 重要**: 手動コピー後、**メモリパスを設定する必要があります**：
-1. `{MEMORY_PATH}` プレースホルダーを設定するために `setup_memory_dir.py` を実行：
+1. `MEMORY_PATH` を設定するために `setup_memory_dir.py` を実行：
    ```bash
    python3 setup_memory_dir.py
    ```
-   または手動でコピーした `AGENTS.md` の `{MEMORY_PATH}` プレースホルダーを完全なメモリルートパスに置き換える
+   または手動で `AGENTS.md` の設定セクションのパスを置き換える：
+   ```
+   **MEMORY_PATH**: `/path/to/your/memory-root`
+   ```
 
 **注意**: 言語切り替えは `AGENTS.md` にのみ影響します。ドキュメントファイル（例: `README.md`）には別々の日本語バージョン（例: `README.ja.md`）があり、エージェント機能には影響しません。
 
 ## ステップ5: AGENTS.mdでのメモリパスの設定
 
-**重要**: プロジェクトに `AGENTS.md` をコピーした後、ローカルシステムとプラットフォームに合わせてメモリストレージパスを調整する必要がある場合があります。
+**重要**: プロジェクトに `AGENTS.md` をコピーした後、メモリパスを設定する必要があります。
 
 1. プロジェクトルートで `AGENTS.md` を開く
-2. "Platform Detection" セクションまたはパスのようなセクションを見つける
-3. 必要に応じてシステムに合わせてパスを更新
+2. 上部の**設定**セクションを見つける
+3. この行のパスを置き換える：
+   ```
+   **MEMORY_PATH**: `/path/to/your/memory-root`
+   ```
+   実際のメモリディレクトリパスに置き換える
 
-**プラットフォーム固有の例**（ステップ2で選択した名前で `{MEMORY_DIR}` を置き換え）：
+**プラットフォーム固有の例**：
 - **macOS**: `~/Library/CloudStorage/GoogleDrive-you@gmail.com/My Drive/AI/your-memory-dir` または `~/Documents/your-memory-dir`
 - **Linux**: `~/Documents/your-memory-dir` または `~/.local/share/your-memory-dir`
 - **Windows**: `%USERPROFILE%\Documents\your-memory-dir` または `%APPDATA%\your-memory-dir`
 
-**注意**: ほとんどのユーザーでデフォルトパスが動作します。特別なセットアップの場合のみ調整してください。
+**注意**: パスは1箇所だけ置き換えれば十分です。エージェントは `MEMORY_PATH` がドキュメント全体のすべてのパス参照に適用されることを理解します。
+
+**代替方法**: 自動設定には `setup_memory_dir.py` スクリプトを使用：
+```bash
+python3 setup_memory_dir.py
+```
 
 ## ステップ6: ワークスペースへのメモリディレクトリの追加
 

@@ -24,6 +24,8 @@ A collection of systems and tools for AI coding agents, built from real-world wo
 
 **That's it!** Your AI agent will now automatically remember project patterns, preferences, and decisions.
 
+**⚠️ Important**: This entire repository is a **configuration template**. Agents will NOT automatically create, copy, or reconstruct any part of the agents-md project structure (including memory system, documentation, or `_agents-md/` directory). You must configure systems first (e.g., `MEMORY_PATH` in `AGENTS.md`), then explicitly request initialization.
+
 ## 🧠 Memory System
 
 A robust, RAG-optimized memory management system with multi-platform support.

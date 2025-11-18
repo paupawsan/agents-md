@@ -209,14 +209,16 @@ Your AI's memory needs a place to live. This is usually outside your project fol
 #### Update AGENTS.md with the Path:
 
 1. Open `AGENTS.md` in your project folder
-2. Look for a section that says something like "Platform Detection" or has paths like `~/Documents/`
-3. Find the path that matches your operating system (Mac/Windows/Linux)
-4. Replace the example path with your actual memory folder path
+2. Look for the **Configuration** section at the top
+3. Find the line that says `**MEMORY_PATH**: `/path/to/your/memory-root``
+4. Replace `/path/to/your/memory-root` with your actual memory folder path
 
-**Example**: If you created `my-memory` in Documents on Mac, the path should be:
+**Example**: If you created `my-memory` in Documents on Mac, replace it with:
 ```
-~/Documents/my-memory
+**MEMORY_PATH**: `~/Documents/my-memory`
 ```
+
+**Note**: You only need to replace the path in this one place. The AI agent will understand it applies everywhere.
 
 **Don't worry** if you're not sure - the default paths usually work! Only change this if you put your memory folder in a special location.
 

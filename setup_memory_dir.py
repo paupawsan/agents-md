@@ -6,23 +6,26 @@
 """
 Setup script for configuring the memory system in agents-md.
 
-This script helps configure the memory root path ({MEMORY_PATH} placeholder).
+This script helps configure the memory root path (MEMORY_PATH variable).
 
 Features:
 - Handles shell-escaped paths automatically (e.g., spaces, special characters)
 - Expands ~ for home directory and environment variables
 - Creates directories if they don't exist
 - Cross-platform path handling
+- Updates single MEMORY_PATH variable definition at top of AGENTS.md
 
 Usage:
     python3 setup_memory_dir.py
 
 For non-engineers: Manual replacement is straightforward and recommended.
-Simply open the AGENTS.md file and replace {MEMORY_PATH} with your full memory root path.
+Simply open the AGENTS.md file and replace the path in the Configuration section:
+**MEMORY_PATH**: `/path/to/your/memory-root`
 """
 
 import ast
 import os
+import re
 import sys
 from pathlib import Path
 
@@ -128,29 +131,40 @@ def get_memory_path():
             print("Please answer 'yes' or 'no'.\n")
 
 def replace_memory_path(agents_file, memory_path):
-    """Replace {MEMORY_PATH} placeholder."""
+    """Replace MEMORY_PATH variable definition at top of file."""
     try:
         # Read file
         with open(agents_file, 'r', encoding='utf-8') as f:
             content = f.read()
         
-        # Count occurrences
-        count = content.count('{MEMORY_PATH}')
+        # Pattern to match: **MEMORY_PATH**: `/path/to/your/memory-root`
+        # Handles both backticks and no quotes
+        pattern = r'\*\*MEMORY_PATH\*\*:\s*`?([^`\n]+)`?'
         
-        if count == 0:
-            print(f"\nWarning: No {{MEMORY_PATH}} placeholder found in {agents_file.name}")
-            print("The file may already be configured.")
+        # Check if pattern exists
+        match = re.search(pattern, content)
+        
+        if not match:
+            print(f"\nWarning: No MEMORY_PATH variable definition found in {agents_file.name}")
+            print("The file may already be configured or uses a different format.")
             return False
         
-        # Replace
-        new_content = content.replace('{MEMORY_PATH}', memory_path)
+        # Replace the path value (group 1) with the new path
+        # Keep the format: **MEMORY_PATH**: `new_path`
+        new_content = re.sub(
+            pattern,
+            f'**MEMORY_PATH**: `{memory_path}`',
+            content,
+            count=1  # Only replace first occurrence
+        )
         
         # Write back
         with open(agents_file, 'w', encoding='utf-8') as f:
             f.write(new_content)
         
-        print(f"\n✓ Successfully replaced {count} occurrence(s) of {{MEMORY_PATH}} with:")
+        print(f"\n✓ Successfully updated MEMORY_PATH variable with:")
         print(f"  {memory_path}")
+        print(f"\nNote: Agents understand this variable applies to all path references in the document.")
         return True
         
     except Exception as e:

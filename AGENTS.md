@@ -4,38 +4,66 @@ Copyright (c) 2025 Paulus Ery Wasito Adhi paupawsan@gmail.com
 Licensed under the MIT License. See LICENSE file for details.
 -->
 
+# ⚠️ CRITICAL: DO NOT AUTO-CREATE OR COPY AGENTS-MD STRUCTURE
+
+**AGENTS MUST NOT**:
+- ❌ Automatically create, copy, or reconstruct ANY part of the agents-md project structure
+- ❌ Copy `_agents-md/` directory structure to other projects
+- ❌ Recreate memory system directories/files without explicit user instruction
+- ❌ Copy documentation, templates, or any agents-md files automatically
+- ❌ Initialize any system without user explicitly requesting it
+
+**THIS IS A CONFIGURATION TEMPLATE REPOSITORY**:
+- ✅ This repository provides TEMPLATES and GUIDELINES for how to use systems
+- ✅ Systems must be configured by the USER first (e.g., `MEMORY_PATH` in this file)
+- ✅ Wait for explicit user instruction before creating any system files
+- ✅ Only use systems AFTER user has configured them and explicitly requested usage
+
+**This applies to ALL systems in agents-md** (Memory System, Critical Thinking, and any future systems).
+
 # Memory System Guidelines
 
-**Configure**: Replace `{MEMORY_PATH}` with the full path to your memory root folder.
+## Configuration
 
-**Example**: If you want memory at `~/Documents/my-memory`, replace `{MEMORY_PATH}` with `/Users/username/Documents/my-memory` (or use `~/Documents/my-memory` if your system supports tilde expansion).
+**MEMORY_PATH**: `/path/to/your/memory-root`
+
+**Configure**: Replace the path above with the full path to your memory root folder.
+
+**Example**: If you want memory at `~/Documents/my-memory`, set it to `/Users/username/Documents/my-memory` (or use `~/Documents/my-memory` if your system supports tilde expansion).
 
 Use `setup_memory_dir.py` script or manual replacement to configure.
 
+**Note**: Agents understand that `MEMORY_PATH` defined above applies to all path references throughout this document.
+
 ## Memory Sync (MANDATORY)
 
-**CRITICAL**: Agent MUST sync memory to external files after significant tasks.
+**PREREQUISITE CHECK**: Before syncing memory, verify that:
+- ✅ `MEMORY_PATH` is configured (not `/path/to/your/memory-root`)
+- ✅ User has explicitly requested memory usage
+- ✅ Memory directory exists and is accessible
 
-**Paths** (`{MEMORY_PATH}` = full path to memory root folder):
-- Root: `{MEMORY_PATH}` (this is your memory root folder)
-- Project: `{MEMORY_PATH}/[project-name]/`
-- Common: `{MEMORY_PATH}/common/` (preferences, patterns)
-- Private: `{MEMORY_PATH}/private/` ⚠️ (credentials, personal info)
+**CRITICAL**: Agent MUST sync memory to external files after significant tasks, BUT ONLY if the system is properly configured and user has requested memory usage.
+
+**Paths** (using `MEMORY_PATH` defined above):
+- Root: `MEMORY_PATH` (this is your memory root folder)
+- Project: `MEMORY_PATH/[project-name]/`
+- Common: `MEMORY_PATH/common/` (preferences, patterns)
+- Private: `MEMORY_PATH/private/` ⚠️ (credentials, personal info)
 
 **Platform Detection**:
-- The agent uses the configured `{MEMORY_PATH}` directly (no platform detection needed)
-- Users configure `{MEMORY_PATH}` via setup script or manual replacement
+- The agent uses the configured `MEMORY_PATH` directly (no platform detection needed)
+- Users configure `MEMORY_PATH` via setup script or manual replacement
 - See `_agents-md/memory/platform.md` for common path examples
 
 **When to Sync**: After significant tasks, when discovering patterns, at conversation end.
 
-**Recovery**: If context lost, check `{MEMORY_PATH}/common/preferences.md`, then `{MEMORY_PATH}/[project-name]/context.md`, then use semantic search.
+**Recovery**: If context lost, check `MEMORY_PATH/common/preferences.md`, then `MEMORY_PATH/[project-name]/context.md`, then use semantic search.
 
 ## Privacy Check (MANDATORY FIRST)
 
 **Before storing ANY information**:
-- ⚠️ Personal/private info? → `{MEMORY_PATH}/private/` ONLY
-- ⚠️ Names, emails, company, credentials? → `{MEMORY_PATH}/private/` ONLY
+- ⚠️ Personal/private info? → `MEMORY_PATH/private/` ONLY
+- ⚠️ Names, emails, company, credentials? → `MEMORY_PATH/private/` ONLY
 - ✅ If NO → Continue to categorization
 
 **NEVER** store private info in `topic/` or `session/` files.

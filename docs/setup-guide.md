@@ -148,7 +148,7 @@ python3 switch_agents_lang.py
 
 The script maintains separate source files (`AGENTS.md.en` and `AGENTS.md.ja`) and copies the appropriate one to `AGENTS.md` based on your selection.
 
-**⚠️ Important**: After switching languages, the script will attempt to preserve your configured `{MEMORY_PATH}` automatically. However, if the script cannot detect your configured path, you'll need to run `setup_memory_dir.py` again to configure the memory path in the new language template.
+**⚠️ Important**: After switching languages, the script will attempt to preserve your configured `MEMORY_PATH` automatically. However, if the script cannot detect your configured path, you'll need to run `setup_memory_dir.py` again to configure the memory path in the new language template.
 
 ### Option B: Manual Setup (Simple Alternative)
 
@@ -167,26 +167,38 @@ cp AGENTS.md.ja AGENTS.md
 ```
 
 **⚠️ Important**: After manually copying, you **must** configure the memory path:
-1. Run `setup_memory_dir.py` to configure `{MEMORY_PATH}`:
+1. Run `setup_memory_dir.py` to configure `MEMORY_PATH`:
    ```bash
    python3 setup_memory_dir.py
    ```
-   OR manually replace `{MEMORY_PATH}` placeholder in the copied `AGENTS.md` with your full memory root path
+   OR manually replace the path in the Configuration section of `AGENTS.md`:
+   ```
+   **MEMORY_PATH**: `/path/to/your/memory-root`
+   ```
 
 ## Step 5: Configure Memory Path in AGENTS.md
 
-**CRITICAL**: After copying `AGENTS.md` to your project, you may need to adjust the memory storage path to match your local system and platform.
+**CRITICAL**: After copying `AGENTS.md` to your project, you need to configure the memory path.
 
 1. Open `AGENTS.md` in your project root
-2. Find the memory storage path section (Platform Detection)
-3. Update the path to match your system if needed
+2. Find the **Configuration** section at the top
+3. Replace the path in this line:
+   ```
+   **MEMORY_PATH**: `/path/to/your/memory-root`
+   ```
+   with your actual memory directory path
 
-**Platform-specific examples** (replace `{MEMORY_DIR}` with your chosen name):
+**Platform-specific examples**:
 - **macOS**: `~/Library/CloudStorage/GoogleDrive-you@gmail.com/My Drive/AI/your-memory-dir` or `~/Documents/your-memory-dir`
 - **Linux**: `~/Documents/your-memory-dir` or `~/.local/share/your-memory-dir`
 - **Windows**: `%USERPROFILE%\Documents\your-memory-dir` or `%APPDATA%\your-memory-dir`
 
-**Note**: The default paths should work for most users. Only adjust if you have a custom setup.
+**Note**: You only need to replace the path in one place. Agents understand that `MEMORY_PATH` applies to all path references throughout the document.
+
+**Alternative**: Use `setup_memory_dir.py` script for automatic configuration:
+```bash
+python3 setup_memory_dir.py
+```
 
 ## Step 6: Add Memory Directory to Workspace
 
