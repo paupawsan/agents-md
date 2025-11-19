@@ -6,13 +6,20 @@ Licensed under the MIT License. See LICENSE file for details.
 
 # Simple Setup Guide - For Non-Technical Users
 
-**Don't worry if you're not a programmer!** This guide will walk you through setting up the memory system step by step, using simple language and avoiding technical jargon.
+**Don't worry if you're not a programmer!** This guide will walk you through setting up the systems step by step, using simple language and avoiding technical jargon. The setup process is the same for both the Memory System and Critical Thinking System - they're configured together in one file.
 
 ## What Is This?
 
-This is a **memory system** for AI coding assistants (like Cursor). It helps your AI assistant remember things about your projects, so it can work better with you over time.
+This is a collection of **systems and tools** for AI coding assistants (like Cursor), built from real-world work experience. Currently includes:
 
-**Think of it like**: A notebook where your AI assistant writes down what it learns about your projects, so it doesn't forget.
+1. **Memory System** - Helps your AI assistant remember things about your projects, so it can work better with you over time
+2. **Critical Thinking System** - Helps your AI assistant verify facts, avoid mistakes, and make better decisions
+
+**Think of it like**: 
+- **Memory System**: A notebook where your AI assistant writes down what it learns about your projects, so it doesn't forget
+- **Critical Thinking System**: A quality checker that helps your AI assistant verify information and think more carefully when needed
+
+**Don't worry**: Both systems work automatically once set up! You don't need to understand all the technical details.
 
 ## What You'll Need
 
@@ -73,7 +80,7 @@ Think of a simple name for where your AI's memory will be stored. Examples:
 
 ### Step 3: Set Up the AGENTS.md File
 
-This is the main file that tells your AI assistant how to use memory.
+This is the main file that tells your AI assistant how to use both the Memory System and Critical Thinking System. Don't worry - you only need to configure it once, and both systems will work together automatically.
 
 #### 3a. Open AGENTS.md
 
@@ -100,18 +107,15 @@ This is the main file that tells your AI assistant how to use memory.
 
 **What you just did**: You created your own `AGENTS.md` file from the template.
 
-#### 3d. Replace the Placeholder
+#### 3d. Configure MEMORY_PATH
 
-Now you need to replace `{MEMORY_DIR}` with the name you chose in Step 2.
+Now you need to configure where your memory will be stored. The `AGENTS.md` file uses a simple variable called `MEMORY_PATH` that you need to set.
 
-1. In your `AGENTS.md` file, press `Cmd+F` (Mac) or `Ctrl+F` (Windows/Linux) to open Find
-2. Type `{MEMORY_DIR}` in the search box
-3. Click "Replace" or "Replace All"
-4. Type your chosen name (e.g., `my-memory`)
-5. Click "Replace All"
-6. Save the file
+1. In your `AGENTS.md` file, look for the **Configuration** section near the top
+2. Find the line that says `**MEMORY_PATH**: `/path/to/your/memory-root``
+3. For now, you can leave this as-is - we'll set the actual path in Step 5 after you create the memory folder
 
-**Example**: If you chose `my-memory`, every `{MEMORY_DIR}` becomes `my-memory`
+**Note**: The new format uses a single `MEMORY_PATH` variable instead of replacing multiple placeholders. This makes it easier to configure!
 
 ---
 
@@ -270,10 +274,9 @@ Now let's make sure everything works:
 
 ## You're Done! 🎉
 
-Your memory system is now set up! The AI assistant will automatically:
-- Remember things about your project
-- Learn from your preferences
-- Store important patterns and solutions
+Your systems are now set up! The AI assistant will automatically:
+- **Memory System**: Remember things about your project, learn from your preferences, and store important patterns and solutions
+- **Critical Thinking System**: Verify facts, avoid mistakes, and adjust its thinking based on how important the task is (more careful for important things like security, more flexible for simple tasks)
 
 ---
 
@@ -281,7 +284,7 @@ Your memory system is now set up! The AI assistant will automatically:
 
 ### Q: Do I need to do anything else?
 
-**A**: No! Once set up, the memory system works automatically. The AI will save and retrieve memories as needed.
+**A**: No! Once set up, both systems work automatically. The Memory System will save and retrieve memories as needed, and the Critical Thinking System will help verify facts and make better decisions automatically.
 
 ### Q: Can I change the memory folder location later?
 
@@ -300,7 +303,17 @@ Your memory system is now set up! The AI assistant will automatically:
 
 ### Q: Can I use this with multiple projects?
 
-**A**: Yes! Each project can have its own `AGENTS.md`, but they can all share the same memory folder. The AI will organize memories by project automatically.
+**A**: Yes! Each project can have its own `AGENTS.md`, but they can all share the same memory folder. The AI will organize memories by project automatically. Both the Memory System and Critical Thinking System will work across all your projects.
+
+### Q: What is the Critical Thinking System?
+
+**A**: The Critical Thinking System helps your AI assistant:
+- Verify facts before stating them (prevents mistakes)
+- Be more careful with important things (like security or money)
+- Be flexible with simple tasks (like prototyping)
+- Think through problems more carefully
+
+It works automatically - you don't need to do anything special! The AI will adjust its behavior based on how important the task is.
 
 ---
 
@@ -316,18 +329,25 @@ If you get stuck:
 ## What's Next?
 
 Once set up, you can:
-- Start using your AI assistant - it will automatically use memory
-- Ask the AI to remember specific things about your project
+- Start using your AI assistant - both systems will work automatically
+- Ask the AI to remember specific things about your project (Memory System)
+- The AI will automatically verify facts and think carefully when needed (Critical Thinking System)
 - Review what the AI has learned by browsing your memory folder
 - Customize settings in `AGENTS.md` (advanced)
 
-**Remember**: The memory system is designed to work automatically. You don't need to do anything special - just use your AI assistant normally!
+**Remember**: Both systems are designed to work automatically. You don't need to do anything special - just use your AI assistant normally! The AI will use memory when helpful and think critically when important.
 
 ---
 
-## ⚠️ Important: Agent Permissions
+## ⚠️ Important Notes
 
-**Before the memory system works**, you need to give your AI assistant permission to execute file commands.
+### Configuration Template
+
+**This entire repository is a configuration template**. Agents will NOT automatically create, copy, or reconstruct any part of the agents-md project structure. You must configure systems first (e.g., `MEMORY_PATH` in `AGENTS.md`), then explicitly request initialization.
+
+### Agent Permissions
+
+**Before the systems work**, you need to give your AI assistant permission to execute file commands.
 
 ### What Commands Are Needed?
 
@@ -364,5 +384,7 @@ The AI assistant needs to run safe commands to create and manage memory files:
 
 **Don't worry**: These are just file operations. The AI can't run dangerous commands - only safe file reading/writing.
 
-<!-- #setup-guide #non-technical #beginners #memory-system #cursor #vscode #workspace-setup -->
+**Note**: The Critical Thinking System doesn't need special permissions - it works automatically through the `AGENTS.md` configuration.
+
+<!-- #setup-guide #non-technical #beginners #memory-system #critical-thinking #ai-assistants #cursor #vscode #workspace-setup -->
 
