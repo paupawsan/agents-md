@@ -1,3 +1,9 @@
+<!--
+Copyright (c) 2025 Paulus Ery Wasito Adhi paupawsan@gmail.com
+
+Licensed under the MIT License. See LICENSE file for details.
+-->
+
 # シンプルセットアップガイド - 技術者以外の方へ
 
 **プログラマーでなくても心配いりません！** このガイドでは、専門用語を避け、平易な言葉でメモリシステムのセットアップをステップバイステップで説明します。
@@ -203,14 +209,16 @@ AIのメモリには住む場所が必要です。これは通常、プロジェ
 #### パスでAGENTS.mdを更新：
 
 1. プロジェクトフォルダで`AGENTS.md`を開く
-2. 「Platform Detection」のようなセクションや`~/Documents/`のようなパスがあるセクションを見つける
-3. オペレーティングシステム（Mac/Windows/Linux）に一致するパスを見つける
-4. 例のパスを実際のメモリフォルダパスに置き換える
+2. 上部の**設定**セクションを見つける
+3. `**MEMORY_PATH**: `/path/to/your/memory-root`` という行を見つける
+4. `/path/to/your/memory-root`を実際のメモリフォルダパスに置き換える
 
-**例**: MacのDocumentsに`my-memory`を作成した場合、パスは次のようになります：
+**例**: MacのDocumentsに`my-memory`を作成した場合、次のように置き換えます：
 ```
-~/Documents/my-memory
+**MEMORY_PATH**: `~/Documents/my-memory`
 ```
+
+**注意**: この1箇所だけパスを置き換えれば十分です。AIエージェントはそれがすべてに適用されることを理解します。
 
 **心配しないでください** - デフォルトのパスは通常機能します！メモリフォルダを特別な場所に配置した場合のみ変更してください。
 

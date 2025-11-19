@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+# Copyright (c) 2025 Paulus Ery Wasito Adhi paupawsan@gmail.com
+#
+# Licensed under the MIT License. See LICENSE file for details.
+
 """
 Language switcher for AGENTS.md
 Switches between English (AGENTS.md.en) and Japanese (AGENTS.md.ja) versions.

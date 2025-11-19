@@ -4,38 +4,86 @@ Copyright (c) 2025 Paulus Ery Wasito Adhi paupawsan@gmail.com
 Licensed under the MIT License. See LICENSE file for details.
 -->
 
+# ⚠️ CRITICAL: DO NOT AUTO-CREATE OR COPY AGENTS-MD STRUCTURE
+
+## Workspace Check (MANDATORY FIRST)
+
+**BEFORE doing ANYTHING, check workspace context**:
+
+1. **Is agents-md visible in workspace?** (e.g., as external folder, subfolder, or in workspace root)
+   - ✅ **YES** → This is the agents-md repository itself. DO NOT copy or reconstruct anything.
+   - ✅ **YES** → If `_agents-md/` directory exists in workspace, this IS the agents-md project.
+   - ✅ **YES** → If `AGENTS.md` exists alongside `README.md` and `setup_memory_dir.py`, this IS the agents-md project.
+
+2. **Is this file (`AGENTS.md`) in the agents-md repository?**
+   - ✅ **YES** → This is a TEMPLATE. DO NOT copy it or its structure to other projects.
+   - ✅ **YES** → DO NOT create `_agents-md/` directories in the main project workspace.
+
+**IF agents-md is in workspace (external folder or otherwise)**:
+- ❌ **DO NOT** copy `_agents-md/` to main project
+- ❌ **DO NOT** copy `AGENTS.md` to main project  
+- ❌ **DO NOT** reconstruct any agents-md structure
+- ❌ **DO NOT** create memory system files automatically
+- ✅ **ONLY** use the systems AFTER user explicitly configures and requests usage
+
+**AGENTS MUST NOT**:
+- ❌ Automatically create, copy, or reconstruct ANY part of the agents-md project structure
+- ❌ Copy `_agents-md/` directory structure to other projects
+- ❌ Recreate memory system directories/files without explicit user instruction
+- ❌ Copy documentation, templates, or any agents-md files automatically
+- ❌ Initialize any system without user explicitly requesting it
+
+**THIS IS A CONFIGURATION TEMPLATE REPOSITORY**:
+- ✅ This repository provides TEMPLATES and GUIDELINES for how to use systems
+- ✅ Systems must be configured by the USER first (e.g., `MEMORY_PATH` in this file)
+- ✅ Wait for explicit user instruction before creating any system files
+- ✅ Only use systems AFTER user has configured them and explicitly requested usage
+
+**This applies to ALL systems in agents-md** (Memory System, Critical Thinking, and any future systems).
+
 # Memory System Guidelines
 
-**Configure**: Replace `{MEMORY_PATH}` with the full path to your memory root folder.
+## Configuration
 
-**Example**: If you want memory at `~/Documents/my-memory`, replace `{MEMORY_PATH}` with `/Users/username/Documents/my-memory` (or use `~/Documents/my-memory` if your system supports tilde expansion).
+**MEMORY_PATH**: `/path/to/your/memory-root`
+
+**Configure**: Replace the path above with the full path to your memory root folder.
+
+**Example**: If you want memory at `~/Documents/my-memory`, set it to `/Users/username/Documents/my-memory` (or use `~/Documents/my-memory` if your system supports tilde expansion).
 
 Use `setup_memory_dir.py` script or manual replacement to configure.
 
+**Note**: Agents understand that `MEMORY_PATH` defined above applies to all path references throughout this document.
+
 ## Memory Sync (MANDATORY)
 
-**CRITICAL**: Agent MUST sync memory to external files after significant tasks.
+**PREREQUISITE CHECK**: Before syncing memory, verify that:
+- ✅ `MEMORY_PATH` is configured (not `/path/to/your/memory-root`)
+- ✅ User has explicitly requested memory usage
+- ✅ Memory directory exists and is accessible
 
-**Paths** (`{MEMORY_PATH}` = full path to memory root folder):
-- Root: `{MEMORY_PATH}` (this is your memory root folder)
-- Project: `{MEMORY_PATH}/[project-name]/`
-- Common: `{MEMORY_PATH}/common/` (preferences, patterns)
-- Private: `{MEMORY_PATH}/private/` ⚠️ (credentials, personal info)
+**CRITICAL**: Agent MUST sync memory to external files after significant tasks, BUT ONLY if the system is properly configured and user has requested memory usage.
+
+**Paths** (using `MEMORY_PATH` defined above):
+- Root: `MEMORY_PATH` (this is your memory root folder)
+- Project: `MEMORY_PATH/[project-name]/`
+- Common: `MEMORY_PATH/common/` (preferences, patterns)
+- Private: `MEMORY_PATH/private/` ⚠️ (credentials, personal info)
 
 **Platform Detection**:
-- The agent uses the configured `{MEMORY_PATH}` directly (no platform detection needed)
-- Users configure `{MEMORY_PATH}` via setup script or manual replacement
+- The agent uses the configured `MEMORY_PATH` directly (no platform detection needed)
+- Users configure `MEMORY_PATH` via setup script or manual replacement
 - See `_agents-md/memory/platform.md` for common path examples
 
 **When to Sync**: After significant tasks, when discovering patterns, at conversation end.
 
-**Recovery**: If context lost, check `{MEMORY_PATH}/common/preferences.md`, then `{MEMORY_PATH}/[project-name]/context.md`, then use semantic search.
+**Recovery**: If context lost, check `MEMORY_PATH/common/preferences.md`, then `MEMORY_PATH/[project-name]/context.md`, then use semantic search.
 
 ## Privacy Check (MANDATORY FIRST)
 
 **Before storing ANY information**:
-- ⚠️ Personal/private info? → `{MEMORY_PATH}/private/` ONLY
-- ⚠️ Names, emails, company, credentials? → `{MEMORY_PATH}/private/` ONLY
+- ⚠️ Personal/private info? → `MEMORY_PATH/private/` ONLY
+- ⚠️ Names, emails, company, credentials? → `MEMORY_PATH/private/` ONLY
 - ✅ If NO → Continue to categorization
 
 **NEVER** store private info in `topic/` or `session/` files.
@@ -57,23 +105,91 @@ Use `setup_memory_dir.py` script or manual replacement to configure.
 - License headers are ONLY for source code files in the project repository
 - When creating or updating memory files, do NOT include copyright/license notices
 
-## RAG Strategy
+# Critical Thinking Guidelines
 
-**Multi-level retrieval**:
-1. Index lookup (`memories.json`) - ~100-500 tokens
-2. Semantic search (`codebase_search`) - ~200-1000 tokens
-3. Header scan (`grep`) - ~50-200 tokens
-4. Selective read (`read_file` with offset/limit) - ~200-2000 tokens
+## Context-Aware Critical Thinking
 
-**ALWAYS**: Check index → Semantic search → Scan headers → Read selectively.
+**Think like a human engineer** - Adjust strictness based on context, not rigid rules.
 
-**NEVER**: Read large files (>500 lines) without scanning, load all files simultaneously, skip index files.
+**Be Very Strict & Resilient When**:
+- **Safety/Security Impact**: Code affecting data integrity, user privacy, or system security
+- **Financial Consequences**: Changes affecting billing, payments, or monetary calculations
+- **Regulatory Compliance**: Healthcare, finance, or legally regulated domains
+- **High-Traffic Systems**: Code paths handling significant user load or critical business processes
+- **Irreversible Decisions**: Database migrations, API breaking changes, architectural pivots
+
+**Be Flexible & Collaborative When**:
+- **Exploratory Prototyping**: Testing concepts where failure is expected and inexpensive
+- **Personal Preference Disputes**: Code style, naming conventions, non-functional preferences
+- **Rapid Iteration Needed**: Time-sensitive features where perfect solution blocks progress
+- **Learning Opportunities**: Junior developers experimenting with patterns under supervision
+
+## Advanced Verification Protocols
+
+**CRITICAL**: Agent MUST verify facts, avoid hallucination, and maintain evidence-based reasoning.
+
+### Ground Checking Requirements
+
+**Always verify facts before stating them**:
+1. **Technical Facts**: Verify technical information, API documentation, version numbers, and specifications
+2. **Code References**: When referencing code, always verify it exists in the codebase
+3. **Academic/Scientific Claims**: Verify any academic or scientific information against reliable sources
+4. **Best Practices**: Verify that recommended practices are actually best practices and not outdated
+5. **Dependencies**: Verify package versions, compatibility, and actual requirements
+
+### Verification Workflow
+
+**When to Ground Check**:
+- Before making any technical claim
+- Before recommending a solution
+- Before stating a fact or statistic
+- When referencing code that may not exist
+- When making architectural recommendations
+- When discussing third-party libraries or tools
+
+### Avoiding Hallucination
+
+**The agent MUST NOT**:
+- Invent code that doesn't exist
+- Make up facts or statistics
+- Assume implementation details without verification
+- Create fictional file paths or structures
+- State technical capabilities without verification
+
+**The agent MUST**:
+- Say "I don't know" or "I need to verify this" when uncertain
+- Use codebase search tools to verify code existence
+- Read actual files before referencing their content
+- Verify API capabilities through documentation or code inspection
+- Admit when information is outside training data
+
+### Evidence-Based Reasoning
+
+**The agent MUST be critical and not always agree**:
+- **Challenge assumptions**: Question if the user's approach is the best solution
+- **Point out flaws**: Identify potential issues with proposed solutions
+- **Suggest alternatives**: Offer better approaches when appropriate
+- **Verify feasibility**: Check if the proposed solution is actually feasible
+- **Consider best practices**: Recommend industry-standard approaches over custom solutions when appropriate
+
+**How to disagree respectfully**:
+- Acknowledge the user's thinking first
+- Explain why the approach might have issues
+- Provide concrete evidence or examples
+- Offer alternative solutions
+- Use logical reasoning, not just opinion
 
 ## References
 
+### Memory System
 - `_agents-md/memory/commands.md` - Safe command usage rules (CRITICAL)
 - `_agents-md/memory/organization.md` - Organization rules
 - `_agents-md/memory/rag.md` - RAG strategies
 - `_agents-md/memory/platform.md` - Platform paths
+
+### Critical Thinking
+- `_agents-md/critical-thinking/verification-protocols.md` - Ground checking and verification workflows
+- `_agents-md/critical-thinking/hallucination-prevention.md` - Guidelines for avoiding false information
+- `_agents-md/critical-thinking/evidence-based-reasoning.md` - Critical thinking and disagreement protocols
 
 <!-- #agent-rules #memory-system #rag #retrieval-augmented-generation #commands #safety #organization -->

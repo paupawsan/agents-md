@@ -1,4 +1,10 @@
 <!--
+Copyright (c) 2025 Paulus Ery Wasito Adhi paupawsan@gmail.com
+
+Licensed under the MIT License. See LICENSE file for details.
+-->
+
+<!--
 Global Agent Memory Template
 For cross-project memory, personal patterns, and life/career notes
 
