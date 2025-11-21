@@ -65,14 +65,28 @@ cd ~/Documents/agents-md
 If you prefer automation, you can use the provided Python script:
 
 ```bash
-python3 setup_memory_dir.py
+# Windows
+python setup.py
+
+# macOS/Linux
+python3 setup.py
+
+# Or specify language directly
+python3 setup.py --lang en    # English
+python3 setup.py --lang ja    # Japanese
 ```
 
 The script will:
-- Prompt you for your chosen directory name
-- Validate the name (lowercase, numbers, hyphens, underscores only)
-- Replace all `{MEMORY_DIR}` occurrences in `AGENTS.md`
-- Show you a summary of changes
+1. **Language Selection**: Prompt you to select language (English/Japanese) - or use `--lang` parameter
+2. **Language Switching**: Automatically switch `AGENTS.md` and `GEMINI.md` to selected language
+3. **Memory Path Configuration**: Prompt you to configure memory root path (optional - you can skip with "no")
+4. **File Creation**: Automatically create both `AGENTS.md` (for Cursor) and `GEMINI.md` (for Google Antigravity)
+
+**Features**:
+- Cross-platform support (Windows, macOS, Linux)
+- UTF-8 console encoding for proper Japanese character display on Windows
+- Preserves existing `MEMORY_PATH` when switching languages
+- Can exit after language switching without configuring memory path
 
 ## Step 3: Set Up Files in Your Project
 
@@ -119,11 +133,13 @@ cp /path/to/agents-md/AGENTS.md ./AGENTS.md
 
 **Using File Manager** (Easier for non-technical users):
 - Navigate to the `agents-md` folder
-- Copy the `_agents-md` folder and `AGENTS.md` file
+- Copy the `_agents-md` folder, `AGENTS.md`, and `GEMINI.md` files
 - Navigate to your project folder
-- Paste both items
+- Paste all three items
 
-**Important**: If your project already has an `AGENTS.md` file, **append** the content from agents-md's `AGENTS.md` to your existing file to avoid conflicts.
+**Important**: 
+- If your project already has an `AGENTS.md` file, **append** the content from agents-md's `AGENTS.md` to your existing file to avoid conflicts.
+- `GEMINI.md` is for Google Antigravity support - copy it if you plan to use Antigravity, or skip it if you only use Cursor.
 
 **✅ Compatibility Note**: agents-md is fully compatible with existing Cursor rules and user rules. The memory system rules will work alongside your existing `AGENTS.md` content.
 
@@ -133,22 +149,26 @@ cp /path/to/agents-md/AGENTS.md ./AGENTS.md
 
 ### Option A: Automated Script (Recommended)
 
-Use the provided Python script to switch between languages:
+Use the setup script to switch between languages:
 
 ```bash
-# Switch to Japanese
-python3 switch_agents_lang.py ja
+# Run setup script - it will prompt for language first
+python3 setup.py
 
-# Switch to English
-python3 switch_agents_lang.py en
-
-# Check current language
-python3 switch_agents_lang.py
+# Or specify language directly via command line
+python3 setup.py --lang en    # Switch to English
+python3 setup.py --lang ja    # Switch to Japanese
 ```
 
-The script maintains separate source files (`AGENTS.md.en` and `AGENTS.md.ja`) and copies the appropriate one to `AGENTS.md` based on your selection.
+The setup script will:
+1. **Language Selection**: Prompt you to select a language (English or Japanese) - or use `--lang` parameter
+2. **Language Switching**: Switch `AGENTS.md` and `GEMINI.md` to the selected language
+3. **Preserve Configuration**: Preserve your configured `MEMORY_PATH` if it exists
+4. **Optional Memory Setup**: Ask if you want to configure memory path (you can choose "no" to exit)
 
-**⚠️ Important**: After switching languages, the script will attempt to preserve your configured `MEMORY_PATH` automatically. However, if the script cannot detect your configured path, you'll need to run `setup_memory_dir.py` again to configure the memory path in the new language template.
+The script maintains separate source files (`AGENTS.md.en` and `AGENTS.md.ja`) and copies the appropriate one to both `AGENTS.md` (for Cursor) and `GEMINI.md` (for Google Antigravity) based on your selection.
+
+**💡 Tip**: You can use the script just to switch languages without configuring memory path - simply answer "no" when asked about memory path configuration.
 
 ### Option B: Manual Setup (Simple Alternative)
 
@@ -167,9 +187,9 @@ cp AGENTS.md.ja AGENTS.md
 ```
 
 **⚠️ Important**: After manually copying, you **must** configure the memory path:
-1. Run `setup_memory_dir.py` to configure `MEMORY_PATH`:
+1. Run `setup.py` to configure `MEMORY_PATH`:
    ```bash
-   python3 setup_memory_dir.py
+   python3 setup.py
    ```
    OR manually replace the path in the Configuration section of `AGENTS.md`:
    ```
@@ -195,9 +215,9 @@ cp AGENTS.md.ja AGENTS.md
 
 **Note**: You only need to replace the path in one place. Agents understand that `MEMORY_PATH` applies to all path references throughout the document.
 
-**Alternative**: Use `setup_memory_dir.py` script for automatic configuration:
+**Alternative**: Use `setup.py` script for automatic configuration:
 ```bash
-python3 setup_memory_dir.py
+python3 setup.py
 ```
 
 ## Step 6: Add Memory Directory to Workspace

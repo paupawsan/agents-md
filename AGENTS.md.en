@@ -13,7 +13,7 @@ Licensed under the MIT License. See LICENSE file for details.
 1. **Is agents-md visible in workspace?** (e.g., as external folder, subfolder, or in workspace root)
    - ✅ **YES** → This is the agents-md repository itself. DO NOT copy or reconstruct anything.
    - ✅ **YES** → If `_agents-md/` directory exists in workspace, this IS the agents-md project.
-   - ✅ **YES** → If `AGENTS.md` exists alongside `README.md` and `setup_memory_dir.py`, this IS the agents-md project.
+   - ✅ **YES** → If `AGENTS.md` exists alongside `README.md` and `setup.py`, this IS the agents-md project.
 
 2. **Is this file (`AGENTS.md`) in the agents-md repository?**
    - ✅ **YES** → This is a TEMPLATE. DO NOT copy it or its structure to other projects.
@@ -51,7 +51,7 @@ Licensed under the MIT License. See LICENSE file for details.
 
 **Example**: If you want memory at `~/Documents/my-memory`, set it to `/Users/username/Documents/my-memory` (or use `~/Documents/my-memory` if your system supports tilde expansion).
 
-Use `setup_memory_dir.py` script or manual replacement to configure.
+Use `setup.py` script or manual replacement to configure.
 
 **Note**: Agents understand that `MEMORY_PATH` defined above applies to all path references throughout this document.
 
