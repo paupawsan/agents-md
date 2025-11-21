@@ -8,6 +8,8 @@ Licensed under the MIT License. See LICENSE file for details.
 
 A collection of systems and tools for AI coding agents, built from real-world work experience. Currently includes a robust Memory System and Critical Thinking framework, with more systems planned for the future.
 
+**日本語マニュアル**: [README.ja.md](README.ja.md) - 日本語版のドキュメントはこちら
+
 ## 🚀 Quick Start
 
 **New to this?** → **[Simple Setup Guide](docs/simple-setup.md)** - Step-by-step guide for non-technical users

@@ -8,6 +8,8 @@ Licensed under the MIT License. See LICENSE file for details.
 
 AIコーディングエージェント向けのシステムとツールのコレクション。実務経験に基づいて構築されています。現在は堅牢なメモリシステムとクリティカルシンキングフレームワークを含み、将来的にはさらに多くのシステムが追加される予定です。
 
+**English Manual**: [README.md](README.md) - English documentation is available here
+
 ## 🚀 クイックスタート
 
 **初心者ですか？** → **[シンプルセットアップガイド](docs/simple-setup.ja.md)** - 技術者以外の方のためのステップバイステップガイド
