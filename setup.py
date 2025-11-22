@@ -99,7 +99,7 @@ LOCALIZATION = {
         'memory_example_1': '  - ~/Documents/my-memory',
         'memory_example_2': '  - /Users/username/Documents/my-memory',
         'memory_example_3': '  - /Users/username/Library/CloudStorage/GoogleDrive-user@gmail.com/My Drive/AI/memory',
-        'memory_example_4': '  - C:\\Users\\username\\Documents\\my-memory (Windows)',
+        'memory_example_4': '  - C:/Users/username/Documents/my-memory (Windows)',
         'memory_note': 'Note: You can use ~ for home directory. Spaces and special characters are handled automatically.',
         'memory_note_detail': 'No need to quote paths - just type them normally. The folder will be created if it doesn\'t exist.',
         'memory_prompt': 'Enter memory root path: ',
@@ -186,7 +186,7 @@ LOCALIZATION = {
         'memory_example_1': '  - ~/Documents/my-memory',
         'memory_example_2': '  - /Users/username/Documents/my-memory',
         'memory_example_3': '  - /Users/username/Library/CloudStorage/GoogleDrive-user@gmail.com/My Drive/AI/memory',
-        'memory_example_4': '  - C:\\Users\\username\\Documents\\my-memory (Windows)',
+        'memory_example_4': '  - C:/Users/username/Documents/my-memory (Windows)',
         'memory_note': '注意: ホームディレクトリには ~ を使用できます。スペースや特殊文字は自動的に処理されます。',
         'memory_note_detail': 'パスを引用符で囲む必要はありません - 通常どおり入力してください。フォルダが存在しない場合は作成されます。',
         'memory_prompt': 'メモリルートパスを入力: ',
@@ -392,9 +392,13 @@ def switch_to_language(target_lang, preserve_memory_path=None, cli_lang='en'):
     if configured_path:
         placeholder_count = new_content.count('{MEMORY_PATH}')
         if placeholder_count > 0:
-            new_content = new_content.replace('{MEMORY_PATH}', configured_path)
+            # Normalize to Unix-style paths (forward slashes)
+            normalized_path = configured_path.replace('\\', '/')
+            new_content = new_content.replace('{MEMORY_PATH}', normalized_path)
         pattern = r'\*\*MEMORY_PATH\*\*:\s*`?([^`\n]+)`?'
-        new_content = re.sub(pattern, f'**MEMORY_PATH**: `{configured_path}`', new_content, count=1)
+        # Normalize to Unix-style paths (forward slashes)
+        normalized_path = configured_path.replace('\\', '/')
+        new_content = re.sub(pattern, f'**MEMORY_PATH**: `{normalized_path}`', new_content, count=1)
     
     current_lang = get_current_language()
     if current_lang and current_lang != target_lang:
@@ -423,7 +427,10 @@ def switch_to_language(target_lang, preserve_memory_path=None, cli_lang='en'):
     
     print(t('lang_switch_success', locale=cli_lang, lang=target_lang.upper()))
     if configured_path:
-        print(t('lang_switch_preserved', locale=cli_lang, path=configured_path))
+        # Normalize to Unix-style paths (forward slashes) for display
+        # AI agents understand Unix-style paths universally
+        normalized_display_path = configured_path.replace('\\', '/')
+        print(t('lang_switch_preserved', locale=cli_lang, path=normalized_display_path))
     
     return True
 
@@ -508,7 +515,11 @@ def get_memory_path(cli_lang='en'):
                 print(t('memory_retry', locale=cli_lang) + "\n")
                 continue
         
-        print(f"\n{t('memory_confirm_path', locale=cli_lang, path=memory_path)}")
+        # Normalize to Unix-style paths (forward slashes) for display and storage
+        # Windows accepts forward slashes, and this avoids escape sequence issues in markdown
+        # AI agents understand Unix-style paths universally
+        normalized_display_path = memory_path.replace('\\', '/')
+        print(f"\n{t('memory_confirm_path', locale=cli_lang, path=normalized_display_path)}")
         print(t('memory_confirm_structure', locale=cli_lang))
         confirm = input(t('memory_confirm_prompt', locale=cli_lang)).strip().lower()
         
@@ -536,7 +547,12 @@ def replace_memory_path(file_path, memory_path, cli_lang='en'):
             print(t('file_warning_format', locale=cli_lang))
             return False
         
-        new_content = re.sub(pattern, f'**MEMORY_PATH**: `{memory_path}`', content, count=1)
+        # Normalize to Unix-style paths (forward slashes)
+        # Windows accepts forward slashes, and this avoids escape sequence issues in markdown
+        # AI agents understand Unix-style paths universally
+        normalized_path = memory_path.replace('\\', '/')
+        
+        new_content = re.sub(pattern, f'**MEMORY_PATH**: `{normalized_path}`', content, count=1)
         
         with open(file_path, 'w', encoding='utf-8') as f:
             f.write(new_content)
@@ -559,7 +575,9 @@ def update_both_files(agents_file, gemini_file, memory_path, cli_lang='en'):
                 with open(agents_file, 'r', encoding='utf-8') as src:
                     content = src.read()
                 pattern = r'\*\*MEMORY_PATH\*\*:\s*`?([^`\n]+)`?'
-                content = re.sub(pattern, f'**MEMORY_PATH**: `{memory_path}`', content, count=1)
+                # Normalize to Unix-style paths (forward slashes)
+                normalized_path = memory_path.replace('\\', '/')
+                content = re.sub(pattern, f'**MEMORY_PATH**: `{normalized_path}`', content, count=1)
                 with open(gemini_file, 'w', encoding='utf-8') as dst:
                     dst.write(content)
                 success_gemini = True
@@ -570,7 +588,9 @@ def update_both_files(agents_file, gemini_file, memory_path, cli_lang='en'):
     
     if success_agents:
         print(f"\n{t('memory_update_success', locale=cli_lang)}")
-        print(t('memory_update_path', locale=cli_lang, path=memory_path))
+        # Normalize to Unix-style paths (forward slashes) for display
+        normalized_display_path = memory_path.replace('\\', '/')
+        print(t('memory_update_path', locale=cli_lang, path=normalized_display_path))
         if success_gemini:
             print(t('memory_update_both', locale=cli_lang))
         else:
@@ -632,10 +652,14 @@ def main():
     success = update_both_files(agents_file, gemini_file, memory_path, cli_lang=cli_lang)
     
     if success:
+        # Normalize to Unix-style paths (forward slashes) for display
+        # Windows accepts forward slashes, and AI agents understand Unix-style paths universally
+        normalized_display_path = memory_path.replace('\\', '/')
+        
         print(f"\n{t('complete_title', locale=cli_lang)}")
         print(f"\n{t('complete_summary', locale=cli_lang)}")
         print(t('complete_lang', locale=cli_lang, lang=target_lang.upper()))
-        print(t('complete_memory_path', locale=cli_lang, path=memory_path))
+        print(t('complete_memory_path', locale=cli_lang, path=normalized_display_path))
         print(t('complete_agents_updated', locale=cli_lang))
         if gemini_file.exists():
             print(t('complete_gemini_updated', locale=cli_lang))
@@ -645,7 +669,7 @@ def main():
             print(t('complete_review_gemini', locale=cli_lang))
         print(t('complete_copy_files', locale=cli_lang))
         print(f"\n{t('complete_structure_title', locale=cli_lang)}")
-        print(t('complete_structure_path', locale=cli_lang, path=memory_path))
+        print(t('complete_structure_path', locale=cli_lang, path=normalized_display_path))
         print(t('complete_structure_project', locale=cli_lang))
         print(t('complete_structure_common', locale=cli_lang))
         print(t('complete_structure_private', locale=cli_lang))

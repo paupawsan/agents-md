@@ -47,6 +47,8 @@ Licensed under the MIT License. See LICENSE file for details.
 
 **MEMORY_PATH**: `/path/to/your/memory-root`
 
+**Note**: On Windows, you can use forward slashes (Unix-style) in paths. For example: `C:/Users/username/Documents/my-memory` instead of `C:\Users\...`. The setup script automatically converts Windows paths to Unix-style to avoid escape sequence issues.
+
 **Configure**: Replace the path above with the full path to your memory root folder.
 
 **Example**: If you want memory at `~/Documents/my-memory`, set it to `/Users/username/Documents/my-memory` (or use `~/Documents/my-memory` if your system supports tilde expansion).

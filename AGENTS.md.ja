@@ -53,6 +53,8 @@ Licensed under the MIT License. See LICENSE file for details.
 
 **MEMORY_PATH**: `/path/to/your/memory-root`
 
+**注意**: Windowsでは、パスにフォワードスラッシュ（Unix形式）を使用できます。例: `C:\Users\...` の代わりに `C:/Users/username/Documents/my-memory`。セットアップスクリプトは、エスケープシーケンスの問題を避けるために、Windowsパスを自動的にUnix形式に変換します。
+
 **設定**: 上記のパスをメモリルートフォルダのフルパスに置き換えてください。
 
 **例**: メモリを`~/Documents/my-memory`に配置する場合、`/Users/username/Documents/my-memory`に設定してください（システムがチルダ展開をサポートしている場合は`~/Documents/my-memory`も使用可能）。
