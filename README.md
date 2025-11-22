@@ -8,6 +8,8 @@ Licensed under the MIT License. See LICENSE file for details.
 
 A collection of systems and tools for AI coding agents, built from real-world work experience. Currently includes a robust Memory System and Critical Thinking framework, with more systems planned for the future.
 
+**日本語マニュアル**: [README.ja.md](README.ja.md) - 日本語版のドキュメントはこちら
+
 ## 🚀 Quick Start
 
 **New to this?** → **[Simple Setup Guide](docs/simple-setup.md)** - Step-by-step guide for non-technical users
@@ -17,12 +19,16 @@ A collection of systems and tools for AI coding agents, built from real-world wo
 ### What You'll Need
 
 1. **Download** the repository (ZIP download or `git clone`)
-2. **Choose** a memory directory name (e.g., `my-memory`)
-3. **Configure** `AGENTS.md` with your chosen name
-4. **Add** the memory folder to your Cursor/VS Code workspace
+2. **Run setup script**: `python setup.py` (Windows) or `python3 setup.py` (macOS/Linux)
+   - Select your language (English/Japanese)
+   - Configure memory path
+3. **Add** the memory folder to your Cursor/VS Code workspace
+4. **Copy** `AGENTS.md` and `GEMINI.md` to your project (or add agents-md folder to workspace)
 5. **Initialize** memory with: `"initialize memory for this project"`
 
 **That's it!** Your AI agent will now automatically remember project patterns, preferences, and decisions.
+
+**💡 Tip**: The setup script supports both `AGENTS.md` (for Cursor) and `GEMINI.md` (for Google Antigravity) - both files are created automatically!
 
 **⚠️ Important**: This entire repository is a **configuration template**. Agents will NOT automatically create, copy, or reconstruct any part of the agents-md project structure (including memory system, documentation, or `_agents-md/` directory). You must configure systems first (e.g., `MEMORY_PATH` in `AGENTS.md`), then explicitly request initialization.
 

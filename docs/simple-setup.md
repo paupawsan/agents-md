@@ -78,17 +78,51 @@ Think of a simple name for where your AI's memory will be stored. Examples:
 
 ---
 
-### Step 3: Set Up the AGENTS.md File
+### Step 3: Set Up the Configuration Files
 
-This is the main file that tells your AI assistant how to use both the Memory System and Critical Thinking System. Don't worry - you only need to configure it once, and both systems will work together automatically.
+**🎉 Good News!** We have an **automated setup script** that makes this much easier! You can choose to use the script (recommended) or do it manually.
 
-#### 3a. Open AGENTS.md
+#### Option A: Use the Setup Script (Easiest - Recommended)
+
+The setup script will automatically:
+- Let you choose your language (English or Japanese)
+- Create both `AGENTS.md` (for Cursor) and `GEMINI.md` (for Google Antigravity)
+- Configure the memory path for you
+
+**How to use it:**
+
+1. **Open Terminal/Command Prompt**:
+   - **Mac/Linux**: Open Terminal
+   - **Windows**: Open Command Prompt or PowerShell
+
+2. **Navigate to the agents-md folder**:
+   - Type `cd ` (with a space after cd)
+   - Drag the `agents-md` folder into the terminal window
+   - Press Enter
+
+3. **Run the setup script**:
+   - **Mac/Linux**: Type `python3 setup.py` and press Enter
+   - **Windows**: Type `python setup.py` and press Enter
+
+4. **Follow the prompts**:
+   - Select your language (1 for English, 2 for Japanese, or type `en`/`ja`)
+   - The script will switch the language automatically
+   - Choose whether to configure memory path now (yes/no)
+   - If yes, enter your memory folder path when prompted
+
+**That's it!** The script creates both `AGENTS.md` and `GEMINI.md` files automatically.
+
+#### Option B: Manual Setup (If you prefer to do it yourself)
+
+If you prefer to set things up manually, follow these steps:
+
+**3a. Open AGENTS.md**
 
 1. Open the `agents-md` folder
 2. Find the file called `AGENTS.md.en` (for English) or `AGENTS.md.ja` (for Japanese)
 3. Right-click and choose "Open with" → your text editor (Cursor, VS Code, or even Notepad/TextEdit)
 
-#### 3b. Choose Your Language
+**3b. Choose Your Language**
 
 **For English**:
 - You'll use `AGENTS.md.en` as your template
@@ -96,7 +130,7 @@ This is the main file that tells your AI assistant how to use both the Memory Sy
 **For Japanese**:
 - You'll use `AGENTS.md.ja` as your template
 
-#### 3c. Copy the Template
+**3c. Copy the Template**
 
 1. Open the template file (`AGENTS.md.en` or `AGENTS.md.ja`)
 2. Select all text (`Cmd+A` on Mac, `Ctrl+A` on Windows/Linux)
@@ -105,11 +139,14 @@ This is the main file that tells your AI assistant how to use both the Memory Sy
 5. Paste the content (`Cmd+V` or `Ctrl+V`)
 6. Save the file
 
-**What you just did**: You created your own `AGENTS.md` file from the template.
+**3d. Also Create GEMINI.md** (for Google Antigravity support)
 
-#### 3d. Configure MEMORY_PATH
+1. Copy `AGENTS.md` and rename it to `GEMINI.md`
+2. Both files should have the same content
 
-Now you need to configure where your memory will be stored. The `AGENTS.md` file uses a simple variable called `MEMORY_PATH` that you need to set.
+**3e. Configure MEMORY_PATH**
+
+Now you need to configure where your memory will be stored. Both `AGENTS.md` and `GEMINI.md` use a simple variable called `MEMORY_PATH` that you need to set.
 
 1. In your `AGENTS.md` file, look for the **Configuration** section near the top
 2. Find the line that says `**MEMORY_PATH**: `/path/to/your/memory-root``
@@ -136,10 +173,11 @@ You have two ways to set up the memory system. Choose the one that works best fo
    - Navigate to and select your `agents-md` folder
    - Click "Add" or "Select Folder"
 
-4. **AGENTS.md is automatically detected**:
+4. **AGENTS.md and GEMINI.md are automatically detected**:
    - Recent versions of Cursor automatically find `AGENTS.md` files in your workspace
-   - The `AGENTS.md` file in the `agents-md` folder will be used automatically
-   - You don't need to copy `AGENTS.md` to your project!
+   - The `AGENTS.md` file in the `agents-md` folder will be used automatically for Cursor
+   - The `GEMINI.md` file will be used automatically for Google Antigravity
+   - You don't need to copy these files to your project!
 
 5. **Copy `_agents-md` folder** (still needed):
    - You still need to copy the `_agents-md` folder to your project folder
@@ -157,7 +195,8 @@ Now you need to copy two things to your project folder (the project where you wa
 #### What to Copy:
 
 1. **The `_agents-md` folder** - This contains instructions for the AI
-2. **The `AGENTS.md` file** - This is the file you just created
+2. **The `AGENTS.md` file** - This is the file you just created (or from setup script)
+3. **The `GEMINI.md` file** - This is for Google Antigravity support (created automatically by setup script)
 
 #### How to Copy:
 
@@ -166,25 +205,27 @@ Now you need to copy two things to your project folder (the project where you wa
 2. Navigate to your `agents-md` folder
 3. Copy the `_agents-md` folder (right-click → Copy)
 4. Copy the `AGENTS.md` file (right-click → Copy)
-5. Navigate to your project folder
-6. Paste both items (right-click → Paste)
+5. Copy the `GEMINI.md` file (right-click → Copy)
+6. Navigate to your project folder
+7. Paste all three items (right-click → Paste)
 
 **On Windows**:
 1. Open File Explorer
 2. Navigate to your `agents-md` folder
 3. Copy the `_agents-md` folder (right-click → Copy)
 4. Copy the `AGENTS.md` file (right-click → Copy)
-5. Navigate to your project folder
-6. Paste both items (right-click → Paste)
+5. Copy the `GEMINI.md` file (right-click → Copy)
+6. Navigate to your project folder
+7. Paste all three items (right-click → Paste)
 
 **On Linux**:
 1. Open your file manager
 2. Navigate to your `agents-md` folder
-3. Copy the `_agents-md` folder and `AGENTS.md` file
+3. Copy the `_agents-md` folder, `AGENTS.md`, and `GEMINI.md` files
 4. Navigate to your project folder
-5. Paste both items
+5. Paste all three items
 
-**Important**: If your project already has an `AGENTS.md` file, don't replace it! Instead, open both files and copy the content from the new `AGENTS.md` to the end of your existing file.
+**Important**: If your project already has an `AGENTS.md` file, don't replace it! Instead, open both files and copy the content from the new `AGENTS.md` to the end of your existing file. The same applies to `GEMINI.md` if you're using Google Antigravity.
 
 ---
 

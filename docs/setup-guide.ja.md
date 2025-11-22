@@ -66,14 +66,28 @@ cd ~/Documents/agents-md
 自動化を希望する場合、提供されたPythonスクリプトを使用できます：
 
 ```bash
-python3 setup_memory_dir.py
+# Windows
+python setup.py
+
+# macOS/Linux
+python3 setup.py
+
+# または言語を直接指定
+python3 setup.py --lang en    # 英語
+python3 setup.py --lang ja    # 日本語
 ```
 
 このスクリプトは以下の処理を行います：
-- 選択したディレクトリ名の入力を求める
-- 名前を検証（小文字、数字、ハイフン、アンダースコアのみ）
-- `AGENTS.md` のすべての `{MEMORY_DIR}` 出現箇所を置き換える
-- 変更の概要を表示
+1. **言語選択**: 言語の選択を求める（英語/日本語）- または`--lang`パラメータを使用
+2. **言語切り替え**: `AGENTS.md`と`GEMINI.md`を選択した言語に自動的に切り替え
+3. **メモリパス設定**: メモリルートパスの設定を求める（オプション - "no"でスキップ可能）
+4. **ファイル作成**: `AGENTS.md`（Cursor用）と`GEMINI.md`（Google Antigravity用）の両方を自動的に作成
+
+**機能**:
+- クロスプラットフォームサポート（Windows、macOS、Linux）
+- Windowsでの日本語文字の適切な表示のためのUTF-8コンソールエンコーディング
+- 言語切り替え時に既存の`MEMORY_PATH`を保持
+- メモリパス設定なしで言語切り替え後に終了可能
 
 **注意**: Python 3.6+が必要です。Pythonやコマンドラインツールに慣れていない場合は、方法A（手動置換）を使用してください。
 
@@ -118,17 +132,20 @@ python3 setup_memory_dir.py
 # プロジェクトルートから
 cp -r /path/to/agents-md/_agents-md .
 cp /path/to/agents-md/AGENTS.md ./AGENTS.md
+cp /path/to/agents-md/GEMINI.md ./GEMINI.md
 ```
 
 **ファイルマネージャを使用**（非技術者向けで簡単）：
 - `agents-md` フォルダを参照
-- `_agents-md` フォルダと `AGENTS.md` ファイルをコピー
+- `_agents-md` フォルダ、`AGENTS.md`、`GEMINI.md` ファイルをコピー
 - プロジェクトフォルダを参照
-- 両方のアイテムを貼り付け
+- 3つすべてのアイテムを貼り付け
 
 > **💡 詳細なファイルコピー手順**については、[SIMPLE_SETUP.md](SIMPLE_SETUP.md) ステップ4を参照してください。
 
-**重要**: プロジェクトにすでに `AGENTS.md` ファイルがある場合、競合を避けるため、agents-mdの `AGENTS.md` の内容を既存ファイルの末尾に**追加**してください。
+**重要**: 
+- プロジェクトにすでに `AGENTS.md` ファイルがある場合、競合を避けるため、agents-mdの `AGENTS.md` の内容を既存ファイルの末尾に**追加**してください。
+- `GEMINI.md` はGoogle Antigravityサポート用です - Antigravityを使用する予定の場合はコピーし、Cursorのみを使用する場合はスキップできます。
 
 **✅ 互換性に関する注意**: agents-mdは既存のCursorルールおよびユーザールールと完全に互換性があります。メモリシステムルールは既存の `AGENTS.md` 内容と連携して動作します。
 
@@ -138,26 +155,30 @@ cp /path/to/agents-md/AGENTS.md ./AGENTS.md
 
 ### 方法A: 自動スクリプト (推奨)
 
-提供されたPythonスクリプトを使用して言語を切り替えます：
+セットアップスクリプトを使用して言語を切り替えます：
 
 ```bash
-# 日本語に切り替え
-python3 switch_agents_lang.py ja
+# セットアップスクリプトを実行 - 最初に言語の入力を求められます
+python3 setup.py
 
-# 英語に切り替え
-python3 switch_agents_lang.py en
-
-# 現在の言語を確認
-python3 switch_agents_lang.py
+# またはコマンドラインで言語を直接指定
+python3 setup.py --lang en    # 英語に切り替え
+python3 setup.py --lang ja    # 日本語に切り替え
 ```
 
-スクリプトは個別のソースファイル（`AGENTS.md.en` および `AGENTS.md.ja`）を維持し、選択に基づいて適切なものを `AGENTS.md` にコピーします。
+セットアップスクリプトは以下を実行します：
+1. **言語選択**: 言語の選択を求めます（英語または日本語）- または`--lang`パラメータを使用
+2. **言語切り替え**: `AGENTS.md` と `GEMINI.md` を選択した言語に切り替えます
+3. **設定の保持**: 既存の `MEMORY_PATH` 設定があれば保持します
+4. **オプションのメモリ設定**: メモリパスを設定するかどうかを尋ねます（"no"を選択して終了可能）
 
-**⚠️ 重要**: 言語を切り替えた後、スクリプトは構成された `MEMORY_PATH` を自動的に維持しようとします。ただし、スクリプトが構成されたパスを検出できない場合、新しい言語テンプレートでメモリパスを構成するために `setup_memory_dir.py` を再度実行する必要があります：
+スクリプトは個別のソースファイル（`AGENTS.md.en` および `AGENTS.md.ja`）を維持し、選択に基づいて適切なものを `AGENTS.md`（Cursor用）と `GEMINI.md`（Google Antigravity用）の両方にコピーします。
+
+**💡 ヒント**: メモリパス設定なしで言語のみを切り替えることもできます - メモリパス設定について尋ねられたら "no" と答えてください。
 
 ```bash
 # 言語切り替え後にMEMORY_PATHを構成する必要がある場合：
-python3 setup_memory_dir.py
+python3 setup.py
 ```
 
 スクリプトは `MEMORY_PATH` をまだ構成する必要がある場合に警告します。
@@ -181,9 +202,9 @@ cp AGENTS.md.ja AGENTS.md
 **注意**: プロジェクトルートに単一の `AGENTS.md` ファイルを維持することを想定しています。`AGENTS.md.en` と `AGENTS.md.ja` ファイルは、言語設定に基づいて `AGENTS.md` にクローンして名前変更するテンプレートとして機能します。
 
 **⚠️ 重要**: 手動コピー後、**メモリパスを設定する必要があります**：
-1. `MEMORY_PATH` を設定するために `setup_memory_dir.py` を実行：
+1. `MEMORY_PATH` を設定するために `setup.py` を実行：
    ```bash
-   python3 setup_memory_dir.py
+   python3 setup.py
    ```
    または手動で `AGENTS.md` の設定セクションのパスを置き換える：
    ```
@@ -211,9 +232,9 @@ cp AGENTS.md.ja AGENTS.md
 
 **注意**: パスは1箇所だけ置き換えれば十分です。エージェントは `MEMORY_PATH` がドキュメント全体のすべてのパス参照に適用されることを理解します。
 
-**代替方法**: 自動設定には `setup_memory_dir.py` スクリプトを使用：
+**代替方法**: 自動設定には `setup.py` スクリプトを使用：
 ```bash
-python3 setup_memory_dir.py
+python3 setup.py
 ```
 
 ## ステップ6: ワークスペースへのメモリディレクトリの追加

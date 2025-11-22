@@ -5,9 +5,7 @@ Licensed under the MIT License. See LICENSE file for details.
 
 言語切り替え:
 英語版と日本語版を切り替えるには:
-  python3 switch_agents_lang.py en    # 英語に切り替え
-  python3 switch_agents_lang.py ja    # 日本語に切り替え
-  python3 switch_agents_lang.py       # 現在の言語を表示
+  python3 setup.py    # セットアップスクリプトを実行 - 言語選択を求められます
 
 または手動で: 日本語にするにはAGENTS.md.jaをAGENTS.mdにコピー、英語に戻すにはAGENTS.md.backupから復元。
 -->
@@ -21,7 +19,7 @@ Licensed under the MIT License. See LICENSE file for details.
 1. **agents-mdがワークスペースに表示されていますか？**（例：外部フォルダ、サブフォルダ、またはワークスペースルート）
    - ✅ **はい** → これはagents-mdリポジトリ自体です。何もコピーまたは再構築しないでください。
    - ✅ **はい** → ワークスペースに`_agents-md/`ディレクトリが存在する場合、これはagents-mdプロジェクトです。
-   - ✅ **はい** → `AGENTS.md`が`README.md`と`setup_memory_dir.py`と並んで存在する場合、これはagents-mdプロジェクトです。
+   - ✅ **はい** → `AGENTS.md`が`README.md`と`setup.py`と並んで存在する場合、これはagents-mdプロジェクトです。
 
 2. **このファイル（`AGENTS.md`）はagents-mdリポジトリ内にありますか？**
    - ✅ **はい** → これはテンプレートです。他のプロジェクトにコピーしたり構造をコピーしたりしないでください。
@@ -55,11 +53,13 @@ Licensed under the MIT License. See LICENSE file for details.
 
 **MEMORY_PATH**: `/path/to/your/memory-root`
 
+**注意**: Windowsでは、パスにフォワードスラッシュ（Unix形式）を使用できます。例: `C:\Users\...` の代わりに `C:/Users/username/Documents/my-memory`。セットアップスクリプトは、エスケープシーケンスの問題を避けるために、Windowsパスを自動的にUnix形式に変換します。
+
 **設定**: 上記のパスをメモリルートフォルダのフルパスに置き換えてください。
 
 **例**: メモリを`~/Documents/my-memory`に配置する場合、`/Users/username/Documents/my-memory`に設定してください（システムがチルダ展開をサポートしている場合は`~/Documents/my-memory`も使用可能）。
 
-設定には`setup_memory_dir.py`スクリプトまたは手動置換を使用してください。
+設定には`setup.py`スクリプトまたは手動置換を使用してください。
 
 **注意**: エージェントは、上記で定義された`MEMORY_PATH`がこのドキュメント全体のすべてのパス参照に適用されることを理解します。
 
