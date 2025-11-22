@@ -14,6 +14,8 @@ A collection of systems and tools for AI coding agents, built from real-world wo
 
 **New to this?** → **[Simple Setup Guide](docs/simple-setup.md)** - Step-by-step guide for non-technical users
 
+**Prefer visual guides?** → **[Visual Installation Guide](docs/installation-guide-visual-en.md)** - Step-by-step visual guide with images
+
 **Experienced developer?** → See **[Setup Guide](docs/setup-guide.md)**
 
 ### What You'll Need
@@ -86,6 +88,7 @@ A comprehensive framework for evidence-based reasoning, fact verification, and i
 ## 📚 Documentation
 
 ### Setup & Usage
+- **[Visual Installation Guide](docs/installation-guide-visual-en.md)** - Step-by-step visual guide with images (recommended for beginners)
 - **[Setup Guide](docs/setup-guide.md)** - Complete technical setup instructions
 - **[Usage Guide](docs/usage-guide.md)** - How to use the memory system effectively
 - **[Simple Setup Guide](docs/simple-setup.md)** - Plain language setup guide for non-technical users
