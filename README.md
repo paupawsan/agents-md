@@ -14,6 +14,8 @@ A collection of systems and tools for AI coding agents, built from real-world wo
 
 **New to this?** → **[Simple Setup Guide](docs/simple-setup.md)** - Step-by-step guide for non-technical users
 
+**Prefer visual guides?** → **[Visual Installation Guide](docs/installation-guide-visual-en.md)** - Step-by-step visual guide with images
+
 **Experienced developer?** → See **[Setup Guide](docs/setup-guide.md)**
 
 ### What You'll Need
@@ -22,8 +24,11 @@ A collection of systems and tools for AI coding agents, built from real-world wo
 2. **Run setup script**: `python setup.py` (Windows) or `python3 setup.py` (macOS/Linux)
    - Select your language (English/Japanese)
    - Configure memory path
-3. **Add** the memory folder to your Cursor/VS Code workspace
-4. **Copy** `AGENTS.md` and `GEMINI.md` to your project (or add agents-md folder to workspace)
+3. **Choose your setup method**:
+   - **Best Practice**: Use external `agentic-system` folder (recommended for multiple projects) - see [Visual Guide](docs/installation-guide-visual-en.md#best-practices)
+   - **Workspace**: Add agents-md folder to workspace (good for single project)
+   - **Traditional**: Copy `AGENTS.md` and `GEMINI.md` to your project
+4. **Add** the memory folder to your Cursor/VS Code workspace
 5. **Initialize** memory with: `"initialize memory for this project"`
 
 **That's it!** Your AI agent will now automatically remember project patterns, preferences, and decisions.
@@ -86,6 +91,7 @@ A comprehensive framework for evidence-based reasoning, fact verification, and i
 ## 📚 Documentation
 
 ### Setup & Usage
+- **[Visual Installation Guide](docs/installation-guide-visual-en.md)** - Step-by-step visual guide with images (recommended for beginners)
 - **[Setup Guide](docs/setup-guide.md)** - Complete technical setup instructions
 - **[Usage Guide](docs/usage-guide.md)** - How to use the memory system effectively
 - **[Simple Setup Guide](docs/simple-setup.md)** - Plain language setup guide for non-technical users

@@ -158,9 +158,51 @@ Now you need to configure where your memory will be stored. Both `AGENTS.md` and
 
 ### Step 4: Set Up Files in Your Project
 
-You have two ways to set up the memory system. Choose the one that works best for you:
+You have three ways to set up the memory system. Choose the one that works best for you:
 
-#### Option A: Workspace Setup (Easier - Recommended for Cursor/VS Code)
+#### Option A: Best Practice - External agentic-system Folder (Recommended for Multiple Projects)
+
+**💡 Best Practice**: Use an external `agentic-system` folder for clean separation. This keeps your project code separate from memory and allows one folder to serve all your projects.
+
+**What this means**: Instead of putting memory files inside your project, you create a separate folder outside your projects that holds memory for all your projects.
+
+**Structure**:
+```
+Your Workspace:
+├── YourProject/          ← Your project (only code files)
+│   ├── app.py
+│   └── README.md
+│
+└── agentic-system/      ← External folder (shared by all projects)
+    ├── agent-memory/    ← Memory for all projects
+    └── agents-md/       ← Configuration files
+```
+
+**How to set it up**:
+
+1. **Create the external folder**:
+   - Choose a location like `~/Documents/agentic-system` (or wherever you prefer)
+   - Create a folder called `agentic-system`
+   - Inside it, create two folders: `agent-memory` and `agents-md`
+
+2. **Copy files to `agentic-system/agents-md/`**:
+   - Copy the `_agents-md` folder to `agentic-system/agents-md/`
+   - Copy `AGENTS.md` and `GEMINI.md` to `agentic-system/agents-md/`
+
+3. **Add both folders to your workspace**:
+   - Add your project folder to workspace (File → Open Folder)
+   - Add the `agentic-system` folder to workspace (Add Folder to Workspace)
+   - Both will appear in your workspace sidebar
+
+**Why this is best**:
+- ✅ Keeps your project code clean (no memory files mixed in)
+- ✅ One folder works for all your projects
+- ✅ Easy to share across projects
+- ✅ Better organization
+
+**Note**: This is recommended if you work with multiple projects. See the [Visual Installation Guide](installation-guide-visual-en.md#best-practices) for pictures showing this structure.
+
+#### Option B: Workspace Setup (Good for Single Project)
 
 **If you're using Cursor or VS Code**, you can add the `agents-md` folder to your workspace instead of copying files:
 
@@ -226,6 +268,13 @@ Now you need to copy two things to your project folder (the project where you wa
 5. Paste all three items
 
 **Important**: If your project already has an `AGENTS.md` file, don't replace it! Instead, open both files and copy the content from the new `AGENTS.md` to the end of your existing file. The same applies to `GEMINI.md` if you're using Google Antigravity.
+
+**💡 Choosing Your Setup Method**:
+- **Option A (Best Practice)**: Use if you have multiple projects and want clean separation
+- **Option B (Workspace Setup)**: Use if you prefer workspace integration for a single project  
+- **Option C (Copy Files)**: Use if you prefer traditional file copying
+
+All three methods work equally well - choose based on your preference!
 
 ---
 
