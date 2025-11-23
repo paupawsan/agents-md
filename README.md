@@ -24,8 +24,11 @@ A collection of systems and tools for AI coding agents, built from real-world wo
 2. **Run setup script**: `python setup.py` (Windows) or `python3 setup.py` (macOS/Linux)
    - Select your language (English/Japanese)
    - Configure memory path
-3. **Add** the memory folder to your Cursor/VS Code workspace
-4. **Copy** `AGENTS.md` and `GEMINI.md` to your project (or add agents-md folder to workspace)
+3. **Choose your setup method**:
+   - **Best Practice**: Use external `agentic-system` folder (recommended for multiple projects) - see [Visual Guide](docs/installation-guide-visual-en.md#best-practices)
+   - **Workspace**: Add agents-md folder to workspace (good for single project)
+   - **Traditional**: Copy `AGENTS.md` and `GEMINI.md` to your project
+4. **Add** the memory folder to your Cursor/VS Code workspace
 5. **Initialize** memory with: `"initialize memory for this project"`
 
 **That's it!** Your AI agent will now automatically remember project patterns, preferences, and decisions.

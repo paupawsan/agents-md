@@ -24,8 +24,11 @@ AIコーディングエージェント向けのシステムとツールのコレ
 2. **セットアップスクリプトを実行**: `python setup.py` (Windows) または `python3 setup.py` (macOS/Linux)
    - 言語を選択（英語/日本語）
    - メモリパスを設定
-3. **追加** メモリフォルダをCursor/VS Codeワークスペースに追加
-4. **コピー** `AGENTS.md`と`GEMINI.md`をプロジェクトにコピー（またはagents-mdフォルダをワークスペースに追加）
+3. **セットアップ方法を選択**:
+   - **ベストプラクティス**: 外部`agentic-system`フォルダを使用（複数プロジェクトにおすすめ）- [ビジュアルガイド](docs/installation-guide-visual-ja.md#ベストプラクティス)を参照
+   - **ワークスペース**: agents-mdフォルダをワークスペースに追加（単一プロジェクトに適している）
+   - **従来の方法**: `AGENTS.md`と`GEMINI.md`をプロジェクトにコピー
+4. **追加** メモリフォルダをCursor/VS Codeワークスペースに追加
 5. **初期化** メモリを初期化: `"initialize memory for this project"`
 
 **以上です！** AIエージェントがプロジェクトのパターン、設定、決定を自動的に記憶するようになります。
